@@ -1,7 +1,11 @@
 import React from "react";
 
 function Footer() {
-  return <footer>Website footer</footer>;
+  return (
+    <footer>
+      <p>&copy; 2025 My eCom Store. All rights reserved.</p>
+    </footer>
+  );
 }
 
-export default Footer();
+export default Footer;

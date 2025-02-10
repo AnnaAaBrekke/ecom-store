@@ -1,14 +1,11 @@
 import "./App.css";
+import Layout from "./components/Layout";
 
 function App() {
   return (
-    <div>
-      <article>
-        <h1>Ecom Store</h1>
-        <h2>JSF Assignemnt</h2>
-        <p>Anna Aasprong Brekke</p>
-      </article>
-    </div>
+    <Layout>
+      <div>This is the main content!</div>
+    </Layout>
   );
 }
 

@@ -1,12 +1,12 @@
 import React from "react";
+import NavBar from "./NavBar";
 
 function Header() {
   return (
-    <header>
-      <div>Header with Logo and nav</div>
+    <header className="header">
       <NavBar />
     </header>
   );
 }
 
-export default Header();
+export default Header;

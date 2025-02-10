@@ -1,18 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import CartIcon from "./CartIcon";
 
-function NavBar() {
+function Navbar() {
   return (
-    <nav>
-      <ul>
+    <nav className="navbar">
+      <div className="nav-logo">
+        <Link to="/">Home logo</Link>
+      </div>
+      <ul className="nav-links">
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/cart">Home</Link>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <CartIcon />
         </li>
       </ul>
     </nav>
   );
 }
 
-export default NavBar();
+export default Navbar;

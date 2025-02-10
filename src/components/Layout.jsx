@@ -2,13 +2,14 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 
-function Layout() {
+const Layout = ({ children }) => {
   return (
-    <div>
+    <>
       <Header />
+      <main>{children}</main>
       <Footer />
-    </div>
+    </>
   );
-}
+};
 
-export default Layout();
+export default Layout;
