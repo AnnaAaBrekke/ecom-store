@@ -7,7 +7,7 @@ const CartIcon = () => {
 
   return (
     <div>
-      <Link to="/cart">
+      <Link to="/checkout">
         <ShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
         <span className="cart-count">{cartCount}</span>
       </Link>

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../../components/Product";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const ProductPage = () => {
   const [product, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [cart, setCart] = useState([]);
   let { id } = useParams();
 
   useEffect(() => {
@@ -32,6 +34,12 @@ const ProductPage = () => {
 
     getProduct();
   }, [id]);
+
+  const handleAddToCart = () => {
+    setCart([...cart, product]);
+    alert(`${product.title} has been added to the cart!`);
+  };
+
   if (isLoading || !product) {
     return <div>Loading</div>;
   }
@@ -43,6 +51,24 @@ const ProductPage = () => {
   return (
     <div>
       <Product product={product} showViewButton={false} />
+      {product.reviews && product.reviews.length > 0 ? (
+        <div>
+          <h3>Reviews:</h3>
+          <ul>
+            {product.reviews.map((review) => (
+              <li key={review.id}>
+                <strong>{review.username}:</strong> {review.description}{" "}
+                (Rating: {review.rating}/5)
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <p>No reviews available.</p>
+      )}
+      <button className="addCart" onClick={handleAddToCart}>
+        <AddShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
+      </button>
     </div>
   );
 };
