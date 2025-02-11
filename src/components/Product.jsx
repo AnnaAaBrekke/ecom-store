@@ -12,7 +12,7 @@ const Product = ({ product }) => {
       />
       <p>{product.description}</p>
       <p>
-        <strong>Price:</strong> ${product.discountedPrice}{" "}
+        <strong>Price:</strong> {product.discountedPrice}kr{" "}
         {product.price > product.discountedPrice && (
           <span
             style={{
@@ -21,7 +21,7 @@ const Product = ({ product }) => {
               color: "red",
             }}
           >
-            ${product.price}
+            {product.price}kr
           </span>
         )}
       </p>

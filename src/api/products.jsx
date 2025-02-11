@@ -9,7 +9,7 @@ const Products = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    async function getData() {
+    async function getProducts() {
       try {
         setIsError(false);
         setIsLoading(true);
@@ -27,7 +27,7 @@ const Products = () => {
       }
     }
 
-    getData();
+    getProducts();
   }, []);
 
   if (isLoading) {
