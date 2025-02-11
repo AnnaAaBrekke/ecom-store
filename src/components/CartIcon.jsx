@@ -4,13 +4,31 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import useCart from "../stores/cartStore";
 
 const CartIcon = () => {
-  const cartCount = useCart((state) => state.cart.length);
+  const totalItems = useCart((state) =>
+    state.cart.reduce((total, item) => total + item.quantity, 0)
+  );
 
   return (
-    <div>
+    <div style={{ position: "relative", display: "inline-block" }}>
       <Link to="/checkout">
         <ShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
-        {cartCount > 0 && <span>{cartCount}</span>}
+        {totalItems > 0 && (
+          <span
+            style={{
+              position: "absolute",
+              top: "-5px",
+              right: "-10px",
+              backgroundColor: "orange",
+              color: "white",
+              borderRadius: "50%",
+              padding: "4px 8px",
+              fontSize: "12px",
+              fontWeight: "bold",
+            }}
+          >
+            {totalItems}
+          </span>
+        )}
       </Link>
     </div>
   );

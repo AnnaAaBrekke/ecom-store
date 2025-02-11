@@ -5,15 +5,24 @@ const useCart = create((set) => ({
 
   addToCart: (product) =>
     set((state) => {
-      const isProductInCart = state.cart.some((item) => item.id === product.id);
-      if (isProductInCart) return state;
+      const existingProduct = state.cart.find((item) => item.id === product.id);
 
-      return { cart: [...state.cart, product] };
+      if (existingProduct) {
+        // Increase quantity if the product already exists in the cart
+        return {
+          cart: state.cart.map((item) =>
+            item.id === product.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          ),
+        };
+      }
+
+      // The original add to cart
+      return { cart: [...state.cart, { ...product, quantity: 1 }] };
     }),
 
   clearCart: () => set({ cart: [] }),
-
-  cartCount: (state) => state.cart.length,
 }));
 
 export default useCart;
