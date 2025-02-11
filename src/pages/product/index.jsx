@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../../components/Product";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import useCart from "../../stores/cartStore";
 
 const ProductPage = () => {
+  const addToCart = useCart((state) => state.addToCart);
   const [product, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [cart, setCart] = useState([]);
   let { id } = useParams();
 
   useEffect(() => {
@@ -35,11 +36,6 @@ const ProductPage = () => {
     getProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    setCart([...cart, product]);
-    alert(`${product.title} has been added to the cart!`);
-  };
-
   if (isLoading || !product) {
     return <div>Loading</div>;
   }
@@ -66,7 +62,13 @@ const ProductPage = () => {
       ) : (
         <p>No reviews available.</p>
       )}
-      <button className="addCart" onClick={handleAddToCart}>
+      <button
+        className="addCart"
+        onClick={() => {
+          addToCart(product);
+          alert(`${product.title} has been added to the cart}`);
+        }}
+      >
         <AddShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
       </button>
     </div>
