@@ -1,9 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Product = ({ product }) => {
+const Product = ({ product, showViewButton = true }) => {
+  if (!product) return null;
+
   return (
-    <>
+    <div
+      style={{
+        border: "1px solid #ccc",
+        padding: "16px",
+        borderRadius: "8px",
+        marginBottom: "20px",
+      }}
+    >
       <h3>{product.title}</h3>
       <img
         src={product.image.url}
@@ -26,7 +35,7 @@ const Product = ({ product }) => {
         )}
       </p>
       <p>Rating: {product.rating} / 5</p>
-      <div style={{ marginTop: "10px" }}>
+      <div>
         <strong>Tags:</strong>{" "}
         {product.tags.map((tag, index) => (
           <span
@@ -42,11 +51,17 @@ const Product = ({ product }) => {
             {tag}
           </span>
         ))}
-        <Link to={`/product/${product.id}`} className="view-button">
-          View Product
-        </Link>{" "}
       </div>
-    </>
+      {showViewButton && (
+        <Link
+          to={`/product/${product.id}`}
+          className="view-button"
+          style={{ marginTop: "10px", display: "block" }}
+        >
+          View Product
+        </Link>
+      )}
+    </div>
   );
 };
 
