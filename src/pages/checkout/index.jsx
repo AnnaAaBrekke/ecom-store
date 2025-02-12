@@ -43,14 +43,10 @@ const Checkout = () => {
             ))}
           </ul>
           <h2>Total Amount: {totalAmount.toFixed(2)}kr</h2>
-          <button
-            onClick={({}) => {
-              <Link to="/checkoutSuccess" />;
-              alert("Do you want to checkout?");
-            }}
-          >
-            Checkout
-          </button>
+          <Link to="/checkoutSuccess">
+            {" "}
+            <button>Checkout</button>
+          </Link>
         </div>
       )}
     </div>
