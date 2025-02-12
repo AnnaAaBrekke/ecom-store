@@ -3,7 +3,7 @@ import Product from "../components/Product";
 
 const url = "https://v2.api.noroff.dev/online-shop";
 
-const Products = () => {
+const Products = ({ searchInput }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -30,6 +30,10 @@ const Products = () => {
     getProducts();
   }, []);
 
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   if (isLoading) {
     return <div>Loading products...</div>;
   }
@@ -40,9 +44,13 @@ const Products = () => {
 
   return (
     <div className="productCard">
-      {products.map((product) => (
-        <Product key={product.id} product={product} />
-      ))}
+      {filteredProducts.length > 0 ? (
+        filteredProducts.map((product) => (
+          <Product key={product.id} product={product} />
+        ))
+      ) : (
+        <div>No products match your search.</div>
+      )}
     </div>
   );
 };

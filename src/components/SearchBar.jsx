@@ -1,30 +1,25 @@
-import { List, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
+import TextField from "@mui/material/TextField";
 
-// https://salehmubashar.com/blog/create-a-search-bar-in-react-js
-
-function SearchBar() {
-  const [inputText, setInputText] = useState("");
-  let inputHandler = (e) => {
-    let lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
+const SearchBar = ({ searchInput, setSearchInput }) => {
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
   };
 
   return (
     <div>
-      <h1>Search Bar</h1>
-      <div>
-        <TextField
-          id="outlined-basic"
-          onChange={inputHandler}
-          variant="outlined"
-          fullWidth
-          label="Search"
-        />
-      </div>
-      <List input={inputText} />
+      <TextField
+        id="outlined-basic"
+        variant="outlined"
+        fullWidth
+        label="Search"
+        type="text"
+        placeholder="Search for a product.."
+        value={searchInput}
+        onChange={handleChange}
+      />
     </div>
   );
-}
+};
 
 export default SearchBar;
