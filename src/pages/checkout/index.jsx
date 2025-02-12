@@ -1,6 +1,6 @@
 import React from "react";
 import useCart from "../../stores/cartStore";
-import { Link } from "react-router-dom";
+import CheckoutButton from "../../components/Button";
 
 const Checkout = () => {
   const cart = useCart((state) => state.cart);
@@ -43,10 +43,7 @@ const Checkout = () => {
             ))}
           </ul>
           <h2>Total Amount: {totalAmount.toFixed(2)}kr</h2>
-          <Link to="/checkoutSuccess">
-            {" "}
-            <button>Checkout</button>
-          </Link>
+          <CheckoutButton />
         </div>
       )}
     </div>
