@@ -2,9 +2,11 @@ import React from "react";
 import useCart from "../../stores/cartStore";
 
 const Checkout = () => {
-  const cart = useCart((state) => state.cart); // Get the cart items
+  const cart = useCart((state) => state.cart);
 
-  // Total Amount Function
+  const totalAmount = useCart((state) =>
+    state.cart.reduce((total, item) => total + item.discountedPrice, 0)
+  );
 
   return (
     <div>
@@ -36,7 +38,7 @@ const Checkout = () => {
               </li>
             ))}
           </ul>
-          <h2>Total Amount: fix it my self</h2>
+          <h2>Total Amount: {totalAmount.toFixed(2)}kr</h2>
           <button
             onClick={(
               {
