@@ -1,5 +1,5 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -35,11 +35,19 @@ function ContactForm() {
     resolver: yupResolver(schema),
   });
 
-  function onSubmit(formData) {
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const onSubmit = (formData) => {
     console.log("Form Data", formData);
-    alert("Form submitted successfully");
+    setSuccessMessage(
+      "Thank you for contacting us! We will get back to you shortly."
+    );
     reset();
-  }
+
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 5000);
+  };
 
   return (
     <div>
@@ -66,6 +74,7 @@ function ContactForm() {
 
         <button type="submit">Submit</button>
       </form>
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
     </div>
   );
 }
