@@ -66,7 +66,7 @@ const ProductPage = () => {
         className="addCart"
         onClick={() => {
           addToCart(product);
-          alert(`${product.title} has been added to the cart}`);
+          alert(`${product.title} has been added to the cart`);
         }}
       >
         <AddShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
