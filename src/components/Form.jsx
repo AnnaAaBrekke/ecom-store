@@ -1,91 +1,73 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    subject: "",
-    email: "",
-    body: "",
+const schema = yup.object().shape({
+  fullName: yup
+    .string()
+    .min(3, "Full name must be at least 3 characters")
+    .max(50, "Full name must be less than 50 characters")
+    .required("Full name is required"),
+  email: yup
+    .string()
+    .email("Please enter a valid email address")
+    .required("Email is required"),
+  subject: yup
+    .string()
+    .min(3, "Subject must be at least 3 characters")
+    .max(100, "Subject must be less than 100 characters")
+    .required("Subject is required"),
+  body: yup
+    .string()
+    .min(3, "Body must be at least 3 characters")
+    .max(1000, "Body must be less than 1000 characters")
+    .required("Body is required"),
+});
+
+function ContactForm() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
   });
 
-  const [errors, setErrors] = useState({});
-
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (formData.length < 3) {
-      newErrors.formData = "Input must be at least 3 characters.";
-    }
-
-    return newErrors;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      setErrors({});
-      alert("Form Submitted successfully");
-      setFormData({
-        fullName: "",
-        subject: "",
-        email: "",
-        body: "",
-      });
-    }
-  };
+  function onSubmit(formData) {
+    console.log("Form Data", formData);
+    alert("Form submitted successfully");
+    reset();
+  }
 
   return (
     <div>
-      <form onSubmit={handleSubmitForm}>
-        {/* Label added for 'full-name' */}
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="fullName">Full Name</label>
         <input
           type="text"
-          name="fullName"
-          value={formData.fullName}
+          {...register("fullName")}
           placeholder="Your full name"
-          onChange={handleChange}
         />
-        {/* Label added for 'subject */}
-        <label htmlFor="subject">Subject</label>
-        <input
-          type="text"
-          name="subject"
-          value={formData.subject}
-          placeholder="Subject"
-          onChange={handleChange}
-        ></input>
-        {/* Label added for 'email' */}
+        <p style={{ color: "red" }}>{errors.fullName?.message}</p>
+
         <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          placeholder="Email"
-          onChange={handleChange}
-        ></input>
-        {/* Label added for 'Body' */}
+        <input type="email" {...register("email")} placeholder="Email" />
+        <p style={{ color: "red" }}>{errors.email?.message}</p>
+
+        <label htmlFor="subject">Subject</label>
+        <input type="text" {...register("subject")} placeholder="Subject" />
+        <p style={{ color: "red" }}>{errors.subject?.message}</p>
+
         <label htmlFor="body">Body</label>
-        <input
-          name="body"
-          value={formData.body}
-          placeholder="Body"
-          onChange={handleChange}
-        ></input>
-        {/* Button to submit our form */}
+        <input type="text" {...register("body")} placeholder="Your message" />
+        <p style={{ color: "red" }}>{errors.body?.message}</p>
+
         <button type="submit">Submit</button>
       </form>
     </div>
   );
-};
+}
 
 export default ContactForm;
