@@ -3,7 +3,7 @@ import Product from "../components/Product";
 
 const url = "https://v2.api.noroff.dev/online-shop";
 
-const Products = ({ searchInput }) => {
+const Products = ({ searchInput, setSuggestions }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -19,6 +19,7 @@ const Products = ({ searchInput }) => {
         console.log("API Products", json);
 
         setProducts(json.data);
+        setSuggestions(json.data.map((product) => product.title));
 
         setIsLoading(false);
       } catch (error) {
@@ -28,7 +29,7 @@ const Products = ({ searchInput }) => {
     }
 
     getProducts();
-  }, []);
+  }, [setSuggestions]);
 
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchInput.toLowerCase())
