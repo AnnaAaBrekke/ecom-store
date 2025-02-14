@@ -23,7 +23,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
 
   const handleSearchClose = () => {
     setSearchInput("");
-    setShowSuggestions("");
+    setShowSuggestions(false);
     setSelectedSuggestion(-1);
   };
 

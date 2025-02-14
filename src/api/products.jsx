@@ -48,9 +48,9 @@ const Products = ({ searchInput, setSuggestions }) => {
   return (
     <div style={gridContainerStyle}>
       {filteredProducts.length > 0 ? (
-        filteredProducts.map((product) => (
-          <Product key={product.id} product={product} />
-        ))
+        filteredProducts
+          .slice(0, 12)
+          .map((product) => <Product key={product.id} product={product} />)
       ) : (
         <div>No products match your search.</div>
       )}
