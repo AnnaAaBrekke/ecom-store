@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { List, ListItem, ListItemButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 
 // Source: https://salehmubashar.com/blog/create-a-search-bar-in-react-js (TextField)
+// Source: https://www.youtube.com/watch?v=o1XcuaCcsDA (AutoComplete, Filter, Keydown)
 
 const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -14,6 +17,11 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
     } else {
       setShowSuggestions(false);
     }
+  };
+
+  const handleSearchClose = () => {
+    setSearchInput("");
+    setShowSuggestions("");
   };
 
   const handleSuggestionClick = (suggestion) => {
@@ -37,6 +45,11 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
         value={searchInput}
         onChange={handleChange}
       />
+      {searchInput === "" ? (
+        <SearchIcon />
+      ) : (
+        <CloseIcon onClick={handleSearchClose} />
+      )}
       {showSuggestions && filteredSuggestions.length > 0 && (
         <List style={suggestionListStyle}>
           {filteredSuggestions.slice(0, 5).map((suggestion, index) => (
