@@ -1,21 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
+import "../styles/Navbar.css";
 
 function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-logo">
-        <Link to="/">Home logo</Link>
+        <Link to="/" className="logo-link">
+          Home Logo
+        </Link>
       </div>
       <ul className="nav-links">
-        <li>
-          <Link to="/">Home</Link>
+        <li className="nav-item">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
         </li>
-        <li>
-          <Link to="/contact">Contact</Link>
+        <li className="nav-item">
+          <Link to="/contact" className="nav-link">
+            Contact
+          </Link>
         </li>
-        <li>
+        <li className="nav-item">
           <CartIcon />
         </li>
       </ul>

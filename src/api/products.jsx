@@ -44,7 +44,7 @@ const Products = ({ searchInput, setSuggestions }) => {
   }
 
   return (
-    <div className="productCard">
+    <div style={gridContainerStyle}>
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
           <Product key={product.id} product={product} />
@@ -57,3 +57,10 @@ const Products = ({ searchInput, setSuggestions }) => {
 };
 
 export default Products;
+
+const gridContainerStyle = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "16px",
+  padding: "16px",
+};

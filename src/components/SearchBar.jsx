@@ -21,6 +21,10 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
     setShowSuggestions(false);
   };
 
+  const filteredSuggestions = suggestions.filter((suggestion) =>
+    suggestion.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
     <div>
       <TextField
@@ -33,21 +37,14 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
         value={searchInput}
         onChange={handleChange}
       />
-      {showSuggestions && suggestions.length > 0 && (
-        <List
-          style={{
-            color: "#ccc",
-            top: "100%",
-            left: 0,
-            right: 0,
-            backgroundColor: "white",
-            zIndex: 1,
-            border: "1px solid #ccc",
-          }}
-        >
-          {suggestions.map((suggestion, index) => (
+      {showSuggestions && filteredSuggestions.length > 0 && (
+        <List style={suggestionListStyle}>
+          {filteredSuggestions.slice(0, 5).map((suggestion, index) => (
             <ListItem key={index} disablePadding>
-              <ListItemButton onClick={() => handleSuggestionClick(suggestion)}>
+              <ListItemButton
+                style={suggestionItemStyle}
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
                 {suggestion}
               </ListItemButton>
             </ListItem>
@@ -59,3 +56,24 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
 };
 
 export default SearchBar;
+
+const suggestionListStyle = {
+  top: "100%",
+  left: 0,
+  right: 0,
+  backgroundColor: "#fff",
+  border: "1px solid #ccc",
+  borderTop: "none",
+  borderRadius: "0 0 4px 4px",
+  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+  zIndex: 10,
+  maxHeight: "200px",
+  overflowY: "auto",
+};
+
+const suggestionItemStyle = {
+  padding: "8px 16px",
+  fontSize: "14px",
+  cursor: "pointer",
+  color: "#333",
+};
