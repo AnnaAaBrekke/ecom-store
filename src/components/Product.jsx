@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 const Product = ({ product, showViewButton = true }) => {
   if (!product) return null;
 
+  const discount =
+    product.price > product.discountedPrice
+      ? Math.round(
+          ((product.price - product.discountedPrice) / product.price) * 100
+        )
+      : 0;
+
   return (
     <div
       style={{
@@ -20,18 +27,26 @@ const Product = ({ product, showViewButton = true }) => {
         style={{ width: "100%", height: "150px", objectFit: "cover" }}
       />
       <p>{product.description}</p>
+
       <p>
         <strong>Price:</strong> {product.discountedPrice}kr{" "}
         {product.price > product.discountedPrice && (
-          <span
-            style={{
-              textDecoration: "line-through",
-              marginLeft: "8px",
-              color: "red",
-            }}
-          >
-            {product.price}kr
-          </span>
+          <>
+            <span
+              style={{
+                textDecoration: "line-through",
+                marginLeft: "8px",
+                color: "red",
+              }}
+            >
+              {product.price}kr
+            </span>
+            {discount > 0 && (
+              <span style={{ marginLeft: "8px", color: "green" }}>
+                {discount}% off
+              </span>
+            )}
+          </>
         )}
       </p>
       <p>Rating: {product.rating} / 5</p>
