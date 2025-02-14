@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { SubmitFormButton } from "./Buttons";
 
 const schema = yup.object().shape({
   fullName: yup
@@ -35,18 +36,23 @@ function ContactForm() {
     resolver: yupResolver(schema),
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
   const onSubmit = (formData) => {
+    setIsLoading(true);
     console.log("Form Data", formData);
-    setSuccessMessage(
-      "Thank you for contacting us! We will get back to you shortly."
-    );
-    reset();
-
     setTimeout(() => {
-      setSuccessMessage("");
-    }, 5000);
+      setSuccessMessage(
+        "Thank you for contacting us! We will get back to you shortly."
+      );
+      setIsLoading(false);
+      reset();
+
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 5000);
+    }, 2000);
   };
 
   return (
@@ -71,8 +77,7 @@ function ContactForm() {
         <label htmlFor="body">Body</label>
         <input type="text" {...register("body")} placeholder="Your message" />
         <p style={{ color: "red" }}>{errors.body?.message}</p>
-
-        <button type="submit">Submit</button>
+        <SubmitFormButton isLoading={isLoading} />
       </form>
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
     </div>
