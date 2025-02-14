@@ -1,3 +1,5 @@
+// const url = "https://v2.api.noroff.dev/online-shop";
+
 // // src/utils/apiBase.js
 // export const apiBase = {
 //   async get(endpoint) {

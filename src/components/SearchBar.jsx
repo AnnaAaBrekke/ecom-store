@@ -98,6 +98,8 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
 
 export default SearchBar;
 
+// Fix styling later - just for structure purpose
+
 const suggestionListStyle = {
   top: "100%",
   left: 0,

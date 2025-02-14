@@ -60,6 +60,9 @@ const Products = ({ searchInput, setSuggestions }) => {
 
 export default Products;
 
+
+// Fix styling later - just for structure purpose
+
 const gridContainerStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",
