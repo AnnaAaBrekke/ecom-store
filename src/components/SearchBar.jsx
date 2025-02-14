@@ -3,12 +3,14 @@ import TextField from "@mui/material/TextField";
 import { List, ListItem, ListItemButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
+import "../styles/Searchbar.css";
 
 // Source: https://salehmubashar.com/blog/create-a-search-bar-in-react-js (TextField)
 // Source: https://www.youtube.com/watch?v=o1XcuaCcsDA (AutoComplete, Filter, Keydown)
 
 const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
@@ -22,15 +24,34 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
   const handleSearchClose = () => {
     setSearchInput("");
     setShowSuggestions("");
+    setSelectedSuggestion(-1);
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setSearchInput(suggestion);
+    setSearchInput(suggestion.title); // Set the title in the input
+    window.open(`/product/${suggestion.id}`, "_self"); // Navigate to the product page using its ID
     setShowSuggestions(false);
   };
 
+  const handleKeyDown = (e) => {
+    if (selectedSuggestion < filteredSuggestions.length) {
+      if (e.key === "ArrowUp" && selectedSuggestion > 0) {
+        setSelectedSuggestion((prev) => prev - 1);
+      } else if (
+        e.key === "ArrowDown" &&
+        selectedSuggestion < filteredSuggestions.length - 1
+      ) {
+        setSelectedSuggestion((prev) => prev + 1);
+      } else if (e.key === "Enter" && selectedSuggestion >= 0) {
+        const selectedProduct = filteredSuggestions[selectedSuggestion];
+        window.open(`/product/${selectedProduct.id}`, "_self"); // Navigate to the product page
+        setShowSuggestions(false);
+      }
+    }
+  };
+
   const filteredSuggestions = suggestions.filter((suggestion) =>
-    suggestion.toLowerCase().includes(searchInput.toLowerCase())
+    suggestion.title.toLowerCase().includes(searchInput.toLowerCase())
   );
 
   return (
@@ -44,6 +65,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
         placeholder="Search for a product.."
         value={searchInput}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
       {searchInput === "" ? (
         <SearchIcon />
@@ -53,12 +75,18 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
       {showSuggestions && filteredSuggestions.length > 0 && (
         <List style={suggestionListStyle}>
           {filteredSuggestions.slice(0, 5).map((suggestion, index) => (
-            <ListItem key={index} disablePadding>
+            <ListItem
+              key={suggestion.id}
+              className={`search-suggestion-line ${
+                selectedSuggestion === index ? "active" : ""
+              }`}
+              disablePadding
+            >
               <ListItemButton
                 style={suggestionItemStyle}
                 onClick={() => handleSuggestionClick(suggestion)}
               >
-                {suggestion}
+                {suggestion.title}
               </ListItemButton>
             </ListItem>
           ))}

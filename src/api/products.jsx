@@ -19,7 +19,9 @@ const Products = ({ searchInput, setSuggestions }) => {
         console.log("API Products", json);
 
         setProducts(json.data);
-        setSuggestions(json.data.map((product) => product.title));
+        setSuggestions(
+          json.data.map((product) => ({ id: product.id, title: product.title }))
+        );
 
         setIsLoading(false);
       } catch (error) {
