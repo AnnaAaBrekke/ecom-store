@@ -3,7 +3,7 @@ import Product from "../components/Product";
 
 const url = "https://v2.api.noroff.dev/online-shop";
 
-const Products = () => {
+const Products = ({ searchInput, setSuggestions }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -19,6 +19,9 @@ const Products = () => {
         console.log("API Products", json);
 
         setProducts(json.data);
+        setSuggestions(
+          json.data.map((product) => ({ id: product.id, title: product.title }))
+        );
 
         setIsLoading(false);
       } catch (error) {
@@ -28,7 +31,11 @@ const Products = () => {
     }
 
     getProducts();
-  }, []);
+  }, [setSuggestions]);
+
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchInput.toLowerCase())
+  );
 
   if (isLoading) {
     return <div>Loading products...</div>;
@@ -39,12 +46,23 @@ const Products = () => {
   }
 
   return (
-    <div className="productCard">
-      {products.map((product) => (
-        <Product key={product.id} product={product} />
-      ))}
+    <div style={gridContainerStyle}>
+      {filteredProducts.length > 0 ? (
+        filteredProducts
+          .slice(0, 12)
+          .map((product) => <Product key={product.id} product={product} />)
+      ) : (
+        <div>No products match your search.</div>
+      )}
     </div>
   );
 };
 
 export default Products;
+
+const gridContainerStyle = {
+  display: "grid",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "16px",
+  padding: "16px",
+};
