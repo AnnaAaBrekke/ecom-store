@@ -6,8 +6,9 @@ import useCart from "../stores/cartStore";
 // - [ ] cart —> display it sidebar
 // - [ ] cart —> remove item from cart
 
-
 const CartIcon = () => {
+  const { cart, toggleCart } = useCart();
+
   const totalItems = useCart((state) =>
     state.cart.reduce((total, item) => total + item.quantity, 0)
   );

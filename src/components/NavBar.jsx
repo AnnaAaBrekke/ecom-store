@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CartIcon from "./CartIcon";
 import "../styles/Navbar.css";
+import CartSidebar from "./CartSidebar";
 
 function Navbar() {
   return (
@@ -24,6 +25,7 @@ function Navbar() {
         </li>
         <li className="nav-item">
           <CartIcon />
+          <CartSidebar />
         </li>
       </ul>
     </nav>

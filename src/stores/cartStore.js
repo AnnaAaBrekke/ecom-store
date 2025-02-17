@@ -3,6 +3,7 @@ import { create } from "zustand";
 
 const useCart = create((set) => ({
   cart: [],
+  isCartOpen: false,
 
   addToCart: (product) =>
     set((state) => {
@@ -45,6 +46,8 @@ const useCart = create((set) => ({
     })),
 
   clearCart: () => set({ cart: [] }),
+
+  toggleCart: () => set((state) => ({ isCartOpen: !state.isCartOpen })),
 }));
 
 export default useCart;
