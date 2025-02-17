@@ -1,6 +1,9 @@
 import React from "react";
 import useCart from "../stores/cartStore";
 
+// - [ ] cart —> able to remove item from checkoutpage and totalamount updates accordingly
+
+
 const Cart = ({ cart }) => {
   if (!cart || cart.length === 0) {
     return <p>Your cart is empty.</p>;
