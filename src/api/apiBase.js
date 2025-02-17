@@ -1,53 +1,37 @@
-// const url = "https://v2.api.noroff.dev/online-shop";
+// Source: https://javascript.plainenglish.io/dry-principle-in-reactjs-7d7cfb236459
 
-// // src/utils/apiBase.js
-// export const apiBase = {
-//   async get(endpoint) {
-//     try {
-//       const response = await fetch(
-//         `https://v2.api.noroff.dev/online-shop/${endpoint}`
-//       );
-//       if (!response.ok) {
-//         throw new Error(`Failed to fetch from endpoint: ${endpoint}`);
-//       }
-//       return await response.json();
-//     } catch (error) {
-//       console.error("API error:", error);
-//       throw error;
-//     }
-//   },
-// };
+import { useEffect, useState } from "react";
 
-// useFetch apibase example
+const useFetch = (url) => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-// import { useState, useEffect } from "react";
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsError(false);
+        setIsLoading(true);
 
-// const useFetch = (url) => {
-//   const [data, setData] = useState(null);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [isError, setIsError] = useState(false);
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
 
-//   useEffect(() => {
-//     async function fetchData() {
-//       try {
-//         setIsLoading(true);
-//         setIsError(false);
-//         const response = await fetch(url);
-//         if (!response.ok) throw new Error("Failed to fetch data");
-//         const json = await response.json();
-//         setData(json.data); // Adjust if API returns data in `json.data`
-//         setIsLoading(false);
-//       } catch (error) {
-//         console.error("Fetch error:", error);
-//         setIsError(true);
-//         setIsLoading(false);
-//       }
-//     }
+        const json = await response.json();
+        setData(json.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-//     fetchData();
-//   }, [url]);
+    fetchData();
+  }, [url]);
 
-//   return { data, isLoading, isError };
-// };
+  return { data, isLoading, isError };
+};
 
-// export default useFetch;
+export default useFetch;
