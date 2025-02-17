@@ -1,7 +1,7 @@
 import React from "react";
 import ContactForm from "../../components/Form";
 
-const Contact = () => {
+const ContactPage = () => {
   return (
     <div>
       <h1>Contact Us</h1>
@@ -13,4 +13,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactPage;
