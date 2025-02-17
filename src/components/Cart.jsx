@@ -2,10 +2,9 @@ import React from "react";
 import useCart from "../stores/cartStore";
 import { Link } from "react-router-dom";
 
-// - [ ] cart —> able to remove item from checkoutpage and totalamount updates accordingly
-
 const Cart = () => {
-  const { cart, removeFromCart } = useCart();
+  const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
+    useCart();
 
   const totalAmount = cart.reduce(
     (total, item) => total + item.discountedPrice * item.quantity,
@@ -21,13 +20,6 @@ const Cart = () => {
     );
   }
 
-  // const totalAmount = useCart((state) =>
-  //   state.cart.reduce(
-  //     (total, item) => total + item.discountedPrice * item.quantity,
-  //     0
-  //   )
-  // );
-
   return (
     <div>
       <ul>
@@ -39,13 +31,35 @@ const Cart = () => {
               style={{ width: "100px", height: "auto", objectFit: "cover" }}
             />
             <h3>{item.title}</h3>
-            <p>Quantity: {item.quantity}</p>
+
+            <div>
+              <button
+                onClick={() => decreaseQuantity(item.id)}
+                disabled={item.quantity === 1}
+              >
+                -
+              </button>
+              <input type="number" value={item.quantity} min={1} readOnly />
+              <button onClick={() => increaseQuantity(item.id)}>+</button>
+            </div>
+
             <p>
-              Price: <strong>{item.discountedPrice * item.quantity}kr</strong>
+              Price:{" "}
+              <strong>
+                {(
+                  Math.round(item.discountedPrice * item.quantity * 100) / 100
+                ).toFixed(2)}
+                kr
+              </strong>
             </p>
+
             {item.price > item.discountedPrice && (
               <p style={{ color: "red", textDecoration: "line-through" }}>
-                Original Price: {item.price * item.quantity}kr
+                Original Price:{" "}
+                {(Math.round(item.price * item.quantity * 100) / 100).toFixed(
+                  2
+                )}
+                kr
               </p>
             )}
             <button
