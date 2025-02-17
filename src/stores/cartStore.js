@@ -1,3 +1,4 @@
+import { StartRounded } from "@mui/icons-material";
 import { create } from "zustand";
 
 const useCart = create((set) => ({
@@ -22,6 +23,10 @@ const useCart = create((set) => ({
       return { cart: [...state.cart, { ...product, quantity: 1 }] };
     }),
 
+  removeFromCart: (productId) =>
+    set((state) => ({
+      cart: state.cart.filter((item) => item.id !== productId),
+    })),
   clearCart: () => set({ cart: [] }),
 }));
 

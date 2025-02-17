@@ -1,20 +1,32 @@
 import React from "react";
 import useCart from "../stores/cartStore";
+import { Link } from "react-router-dom";
 
 // - [ ] cart —> able to remove item from checkoutpage and totalamount updates accordingly
 
+const Cart = () => {
+  const { cart, removeFromCart } = useCart();
 
-const Cart = ({ cart }) => {
-  if (!cart || cart.length === 0) {
-    return <p>Your cart is empty.</p>;
+  const totalAmount = cart.reduce(
+    (total, item) => total + item.discountedPrice * item.quantity,
+    0
+  );
+
+  if (cart.length === 0) {
+    return (
+      <p>
+        Your cart is empty.
+        <Link to="/">Go Back To Shopping</Link>
+      </p>
+    );
   }
 
-  const totalAmount = useCart((state) =>
-    state.cart.reduce(
-      (total, item) => total + item.discountedPrice * item.quantity,
-      0
-    )
-  );
+  // const totalAmount = useCart((state) =>
+  //   state.cart.reduce(
+  //     (total, item) => total + item.discountedPrice * item.quantity,
+  //     0
+  //   )
+  // );
 
   return (
     <div>
@@ -36,6 +48,12 @@ const Cart = ({ cart }) => {
                 Original Price: {item.price * item.quantity}kr
               </p>
             )}
+            <button
+              className="remove-button"
+              onClick={() => removeFromCart(item.id)}
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>
