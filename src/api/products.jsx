@@ -1,49 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Product from "../components/Product";
+import useFetch from "./apiBase";
 
 const url = "https://v2.api.noroff.dev/online-shop";
 
 const Products = ({ searchInput, setSuggestions }) => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const { data: products, isLoading, isError } = useFetch(url);
 
   useEffect(() => {
-    async function getProducts() {
-      try {
-        setIsError(false);
-        setIsLoading(true);
-
-        const response = await fetch(url);
-        const json = await response.json();
-        console.log("API Products", json);
-
-        setProducts(json.data);
-        setSuggestions(
-          json.data.map((product) => ({ id: product.id, title: product.title }))
-        );
-
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        setIsError(true);
-      }
+    if (products.length > 0) {
+      setSuggestions(
+        products.map((product) => ({
+          id: product.id,
+          title: product.title,
+        }))
+      );
     }
+  }, [products, setSuggestions]);
 
-    getProducts();
-  }, [setSuggestions]);
+  if (isLoading) return <div>Loading products...</div>;
+  if (isError)
+    return <div>Error fetching products. Please try again later.</div>;
 
   const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchInput.toLowerCase())
+    product.title?.toLowerCase().includes(searchInput?.toLowerCase() || "")
   );
-
-  if (isLoading) {
-    return <div>Loading products...</div>;
-  }
-
-  if (isError) {
-    return <div>Error fetching products. Please try again later.</div>;
-  }
 
   return (
     <div style={gridContainerStyle}>
@@ -57,9 +38,9 @@ const Products = ({ searchInput, setSuggestions }) => {
     </div>
   );
 };
-
 export default Products;
 
+// Fix styling later - just for structure purpose
 const gridContainerStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(3, 1fr)",

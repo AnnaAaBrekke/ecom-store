@@ -22,7 +22,7 @@ const Product = ({ product, showViewButton = true }) => {
     >
       <h3>{product.title}</h3>
       <img
-        src={product.image.url}
+        src={product.image?.url || "/placeholder.jpg"}
         alt={product.image.alt || product.title}
         style={{ width: "100%", height: "150px", objectFit: "cover" }}
       />

@@ -1,74 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import Product from "../../components/Product";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import useCart from "../../stores/cartStore";
+import useProduct from "../../api/product";
+import Reviews from "../../components/Reviews";
 
 const ProductPage = () => {
+  const { id } = useParams();
   const addToCart = useCart((state) => state.addToCart);
-  const [product, setProducts] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  let { id } = useParams();
+  const { data: product = {}, isLoading, isError } = useProduct(id); // ✅ Use API hook
 
-  useEffect(() => {
-    async function getProduct() {
-      try {
-        setIsError(false);
-        setIsLoading(true);
-
-        const response = await fetch(
-          `https://v2.api.noroff.dev/online-shop/${id}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch product");
-        }
-        const json = await response.json();
-        setProducts(json.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-        setIsLoading(false);
-        setIsError(true);
-      }
-    }
-
-    getProduct();
-  }, [id]);
-
-  if (isLoading || !product) {
-    return <div>Loading</div>;
-  }
-
-  if (isError) {
+  if (isLoading) return <div>Loading...</div>;
+  if (isError)
     return <div>Error fetching product details. Please try again later.</div>;
-  }
+  if (!product || Object.keys(product).length === 0)
+    return <div>Product not found.</div>;
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    alert(`${product.title} has been added to the cart`);
+  };
 
   return (
     <div>
       <Product product={product} showViewButton={false} />
-      {product.reviews && product.reviews.length > 0 ? (
-        <div>
-          <h3>Reviews:</h3>
-          <ul>
-            {product.reviews.map((review) => (
-              <li key={review.id}>
-                <strong>{review.username}:</strong> {review.description}{" "}
-                (Rating: {review.rating}/5)
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>No reviews available.</p>
-      )}
-      <button
-        className="addCart"
-        onClick={() => {
-          addToCart(product);
-          alert(`${product.title} has been added to the cart`);
-        }}
-      >
+      <Reviews reviews={product.reviews} />
+      <button className="addCart" onClick={handleAddToCart}>
         <AddShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
       </button>
     </div>
