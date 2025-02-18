@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import useCart from "../stores/cartStore";
 
-// - [ ] cart —> display it sidebar
-// - [ ] cart —> remove item from cart
-
 const CartIcon = () => {
   const { cart, toggleCart } = useCart();
 

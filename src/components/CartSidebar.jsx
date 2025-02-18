@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import useCart from "../stores/cartStore";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { calculateTotal } from "../utils/calculateTotal";
-import QuantityCounter from "./Quantity";
+import CartItem from "./CartItem";
 
 const CartSidebar = () => {
   const {
@@ -78,60 +78,13 @@ const CartSidebar = () => {
 
           <ul style={{ padding: 0, listStyle: "none" }}>
             {cart.map((item) => (
-              <li
+              <CartItem
                 key={item.id}
-                style={{
-                  borderBottom: "1px solid #ddd",
-                  padding: "10px 0",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <img
-                    src={item.image?.url || "/placeholder.jpg"}
-                    alt={item.image?.alt || item.title}
-                    style={{
-                      width: "50px",
-                      height: "auto",
-                      marginRight: "10px",
-                      borderRadius: "5px",
-                    }}
-                  />
-                  <div>
-                    <h4 style={{ margin: "0 0 5px", color: "black" }}>
-                      {item.title}
-                    </h4>
-                    <QuantityCounter
-                      quantity={item.quantity}
-                      onIncrease={() => increaseQuantity(item.id)}
-                      onDecrease={() => decreaseQuantity(item.id)}
-                    />
-                  </div>
-                </div>
-                <p style={{ marginTop: "5px", color: "black" }}>
-                  Price:{" "}
-                  <strong>
-                    {(
-                      Math.round(item.discountedPrice * item.quantity * 100) /
-                      100
-                    ).toFixed(2)}
-                    kr
-                  </strong>
-                </p>
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  style={{
-                    color: "red",
-                    cursor: "pointer",
-                    border: "none",
-                    background: "none",
-                    textAlign: "left",
-                  }}
-                >
-                  Remove
-                </button>
-              </li>
+                item={item}
+                increaseQuantity={increaseQuantity}
+                decreaseQuantity={decreaseQuantity}
+                removeFromCart={removeFromCart}
+              />
             ))}
           </ul>
 
