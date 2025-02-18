@@ -27,7 +27,7 @@ const CartIcon = () => {
         {loading ? (
           <CircularProgress size={30} color="inherit" /> // Show spinner when loading
         ) : (
-          <ShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
+          <ShoppingCartIcon style={{ fontSize: 30, color: "#ccc" }} />
         )}
         {totalItems > 0 && !loading && (
           <span
