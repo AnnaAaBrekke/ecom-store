@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: clamp(12px, 3vw, 24px); /* Dynamically adjusts gap size */
+  gap: 16px;
   padding: 16px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto; /* Centers the grid in the container */
+  margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 export const Message = styled.div`
@@ -19,15 +22,16 @@ export const Message = styled.div`
 `;
 
 export const Card = styled.div`
-  border: 1px solid ${({ theme }) => theme.colors.secondary};
+  border: 1px solid ${({ theme }) => theme.colors.accent};
   padding: 12px;
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ theme }) => theme.colors.background};
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 450px; /* Fixed height for consistency */
-  width: 100%; /* Ensures equal width in grid */
+  transition: transform 0.3s ease;
+  height: 450px;
+  width: 100%;
   box-shadow: ${({ theme }) => theme.shadows.soft};
   overflow: hidden;
+  margin: 0 auto;
 
   &:hover {
     transform: translateY(-5px); /* Subtle floating effect */
@@ -72,33 +76,39 @@ export const Description = styled.p`
 export const PriceContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 8px;
 `;
 
 export const Price = styled.span`
   color: ${({ theme }) => theme.colors.primary};
-  font-size: 1.2rem;
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 export const OriginalPrice = styled.span`
   text-decoration: line-through;
   color: ${({ theme }) => theme.colors.error};
-  font-size: 0.9rem;
+  font-size: 14px;
+  opacity: 0.7;
 `;
 
 export const DiscountTag = styled.span`
-  color: ${({ theme }) => theme.colors.success};
+  background-color: ${({ theme }) => theme.colors.success};
+  color: white;
   font-size: 0.9rem;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 5px;
+  display: inline-block;
+  text-transform: uppercase;
 `;
 
-export const Rating = styled.p`
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.text};
-  margin: 8px 0;
+export const Rating = styled.div`
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.accent};
 `;
 
 export const Tags = styled.div`
@@ -134,5 +144,26 @@ export const ViewButton = styled(Link)`
   &:hover {
     transform: scale(1.05);
     box-shadow: ${({ theme }) => theme.shadows.strong};
+  }
+`;
+
+// Product Single Page
+
+export const AddToCartButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: ${({ theme }) => theme.colors.primary};
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 12px 16px;
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.secondary};
   }
 `;

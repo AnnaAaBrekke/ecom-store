@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useFetch from "./apiBase";
 import { Product } from "../components/product";
-import { GridContainer, Message } from "../components/product/Product.style";
+import { GridContainer, Message } from "../styles/Product.style";
 
 const Products = ({ searchInput, setSuggestions }) => {
   const { data: products, isLoading, isError } = useFetch("/");

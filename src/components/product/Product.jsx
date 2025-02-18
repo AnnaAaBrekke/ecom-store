@@ -2,17 +2,18 @@ import React from "react";
 import {
   Card,
   CardBody,
-  Description,
   DiscountTag,
   OriginalPrice,
   Price,
+  PriceContainer,
   ProductImage,
   Rating,
   Tag,
   Tags,
   Title,
   ViewButton,
-} from "./Product.style";
+} from "../../styles/Product.style";
+import { renderRating } from "../../utils/renderRating";
 
 const Product = ({ product, showViewButton = true }) => {
   if (!product) return null;
@@ -30,20 +31,22 @@ const Product = ({ product, showViewButton = true }) => {
         src={product.image?.url || "https://placehold.co/400"}
         alt={product.image.alt || product.title}
       />
+
       <CardBody>
         <Title>{product.title}</Title>
-        <Description>{product.description}</Description>
+        <Rating>{renderRating(product.rating)}</Rating>
+        <Rating>{product.rating} / 5</Rating>
 
-        <Price>
-          <strong>Price:</strong> {product.discountedPrice}kr{" "}
+        <PriceContainer>
+          <Price>{product.discountedPrice}kr</Price>
           {product.price > product.discountedPrice && (
             <>
               <OriginalPrice>{product.price}kr</OriginalPrice>
               {discount > 0 && <DiscountTag>{discount}% off</DiscountTag>}
             </>
           )}
-        </Price>
-        <Rating>Rating: {product.rating} / 5</Rating>
+        </PriceContainer>
+
         <Tags>
           <strong>Tags:</strong>{" "}
           {product.tags.map((tag, index) => (

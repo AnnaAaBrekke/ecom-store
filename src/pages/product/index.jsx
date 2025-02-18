@@ -4,6 +4,7 @@ import { Product, Reviews } from "../../components/product";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import useCart from "../../stores/cartStore";
 import useProduct from "../../api/product";
+import { AddToCartButton } from "../../styles/Product.style";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -24,10 +25,15 @@ const ProductPage = () => {
   return (
     <div>
       <Product product={product} showViewButton={false} />
+      <>
+        <h3>Description</h3>
+        {product.description}
+      </>
       <Reviews reviews={product.reviews} />
-      <button className="addCart" onClick={handleAddToCart}>
-        <AddShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
-      </button>
+      <AddToCartButton onClick={handleAddToCart}>
+        <AddShoppingCartIcon style={{ fontSize: 30, color: "#fff" }} />
+        Add to Cart
+      </AddToCartButton>
     </div>
   );
 };
