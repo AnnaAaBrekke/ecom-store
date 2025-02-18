@@ -2,10 +2,8 @@ import React, { useEffect } from "react";
 import useFetch from "./apiBase";
 import { Product } from "../components/product";
 
-const url = "https://v2.api.noroff.dev/online-shop";
-
 const Products = ({ searchInput, setSuggestions }) => {
-  const { data: products, isLoading, isError } = useFetch(url);
+  const { data: products, isLoading, isError } = useFetch("/");
 
   useEffect(() => {
     if (products.length > 0) {

@@ -1,8 +1,9 @@
 // Source: https://javascript.plainenglish.io/dry-principle-in-reactjs-7d7cfb236459
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../constants";
 
-const useFetch = (url) => {
+const useFetch = (endpoint) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -12,6 +13,8 @@ const useFetch = (url) => {
       try {
         setIsError(false);
         setIsLoading(true);
+
+        const url = `${API_BASE_URL}${endpoint}`;
 
         const response = await fetch(url);
         if (!response.ok) {
@@ -29,7 +32,7 @@ const useFetch = (url) => {
     };
 
     fetchData();
-  }, [url]);
+  }, [endpoint]);
 
   return { data, isLoading, isError };
 };
