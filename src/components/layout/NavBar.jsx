@@ -7,17 +7,16 @@ import {
   NavItem,
   NavLinks,
   NavLinkStyled,
-  NavLogo,
 } from "../../styles/Navbar.style";
 
 function Navbar() {
   return (
     <NavbarContainer>
-      <NavLogo>
+      <>
         <LogoLink to="/">
           <LogoImage src="/public/images/shopsy_logo.jpg"></LogoImage>
         </LogoLink>
-      </NavLogo>
+      </>
       <NavLinks>
         <NavItem>
           <NavLinkStyled to="/">Home</NavLinkStyled>

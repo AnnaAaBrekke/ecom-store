@@ -6,19 +6,13 @@ export const NavbarContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: #fff;
+  background-color: ${({ theme }) => theme.colors.layout};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
   border-radius: 8px;
-`;
-
-export const NavLogo = styled.div`
-  font-size: 24px;
-  font-weight: bold;
+  font-family: ${({ theme }) => theme.typography.fontFamily};
 `;
 
 export const LogoLink = styled(Link)`
-  color: #fff;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 
@@ -52,9 +46,11 @@ export const NavItem = styled.li`
 `;
 
 export const NavLinkStyled = styled(Link)`
-  color: #fff;
+  color: ${({ theme }) => theme.colors.text};
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: ${({ theme }) => theme.typography.fontFamily};
   padding: 8px 12px;
   border-radius: 4px;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;

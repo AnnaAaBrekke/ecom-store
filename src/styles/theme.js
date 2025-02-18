@@ -2,7 +2,8 @@ export const theme = {
   colors: {
     primary: "#1B3A4B", // Deep Midnight for a Bold and Strong Feel
     secondary: "#455A64", // Fjord Blue for a Cool and Modern Accent
-    accent: "#B0BEC5", // Cool Slate for Subtle Highlights
+    layout: "#BCCACC",
+    accent: "#BCCACC", // Cool Slate for Subtle Highlights
     background: "#ECEFF1", // Polar Gray for a Clean and Soft Look
     text: "#0D1B2A", // Nordic Black for High Contrast Readability
     success: "#4caf50", // Green for Success Messages
@@ -16,9 +17,9 @@ export const theme = {
   },
 
   typography: {
-    fontFamily: "'Poppins', sans-serif",
+    fontFamily: "'Playfair Display', serif", // Elegant & Stylish Font
     fontSize: "16px",
-    heading1: "24px",
+    heading1: "32px",
   },
 
   borderRadius: "12px",
