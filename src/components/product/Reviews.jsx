@@ -1,4 +1,6 @@
 import React from "react";
+import { Rating } from "../../styles/Product.style";
+import { renderRating } from "../../utils/renderRating";
 
 const Reviews = ({ reviews }) => {
   if (!reviews || reviews.length === 0) {
@@ -12,7 +14,7 @@ const Reviews = ({ reviews }) => {
         {reviews.map((review) => (
           <li key={review.id} className="review-item">
             <strong>{review.username}:</strong> {review.description}{" "}
-            <span className="review-rating">(Rating: {review.rating}/5)</span>
+            <Rating>{renderRating(review.rating)}</Rating>{" "}
           </li>
         ))}
       </ul>

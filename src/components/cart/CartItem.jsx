@@ -1,6 +1,16 @@
-// components/CartItem.js
 import React from "react";
 import QuantityCounter from "./Quantity";
+import styled from "styled-components";
+import {
+  Card, // 🟢 Used Product Card
+  CardBody,
+  ProductImage,
+  PriceContainer,
+  Price,
+  OriginalPrice,
+  DiscountTag,
+  Title,
+} from "../../styles/Product.style"; // Reusing Product styles
 
 const CartItem = ({
   item,
@@ -9,64 +19,87 @@ const CartItem = ({
   removeFromCart,
 }) => {
   return (
-    <li
-      style={{
-        borderBottom: "1px solid #ddd",
-        padding: "10px 0",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <img
-          src={item.image?.url || "/placeholder.jpg"}
-          alt={item.image?.alt || item.title}
-          style={{
-            width: "50px",
-            height: "auto",
-            marginRight: "10px",
-            borderRadius: "5px",
-          }}
+    <StyledCartItem>
+      <ProductImage
+        src={item.image?.url || "/placeholder.jpg"}
+        alt={item.image?.alt || item.title}
+      />
+      <CardBody>
+        <Title>{item.title}</Title>
+        <QuantityCounter
+          quantity={item.quantity}
+          onIncrease={() => increaseQuantity(item.id)}
+          onDecrease={() => decreaseQuantity(item.id)}
         />
-        <div>
-          <h4 style={{ margin: "0 0 5px", color: "black" }}>{item.title}</h4>
-          <QuantityCounter
-            quantity={item.quantity}
-            onIncrease={() => increaseQuantity(item.id)}
-            onDecrease={() => decreaseQuantity(item.id)}
-          />
-        </div>
-      </div>
-      <p style={{ marginTop: "5px", color: "black" }}>
-        Price:{" "}
-        <strong>
-          {(
-            Math.round(item.discountedPrice * item.quantity * 100) / 100
-          ).toFixed(2)}
-          kr
-        </strong>
-      </p>
-      {item.price > item.discountedPrice && (
-        <p style={{ color: "red", textDecoration: "line-through" }}>
-          Original Price:{" "}
-          {(Math.round(item.price * item.quantity * 100) / 100).toFixed(2)}
-          kr
-        </p>
-      )}
-      <button
-        onClick={() => removeFromCart(item.id)}
-        style={{
-          color: "red",
-          cursor: "pointer",
-          border: "none",
-          background: "none",
-          textAlign: "left",
-        }}
-      >
-        Remove
-      </button>
-    </li>
+        <PriceContainer>
+          <Price>
+            {(
+              Math.round(item.discountedPrice * item.quantity * 100) / 100
+            ).toFixed(2)}
+            kr
+          </Price>
+          {item.price > item.discountedPrice && (
+            <>
+              <OriginalPrice>
+                {(Math.round(item.price * item.quantity * 100) / 100).toFixed(
+                  2
+                )}
+                kr
+              </OriginalPrice>
+              <DiscountTag>
+                {Math.round(
+                  ((item.price - item.discountedPrice) / item.price) * 100
+                )}
+                % off
+              </DiscountTag>
+            </>
+          )}
+        </PriceContainer>
+        <RemoveButton onClick={() => removeFromCart(item.id)}>
+          Remove
+        </RemoveButton>
+      </CardBody>
+    </StyledCartItem>
   );
 };
 
 export default CartItem;
+
+// 🟢 Styled Components for CartItem, reusing styles where possible
+
+export const StyledCartItem = styled(Card)`
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  align-items: left;
+  justify-content: space-between;
+  padding: 12px;
+  gap: 10px;
+  height: auto;
+`;
+
+const RemoveButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: ${({ theme }) => theme.colors.grayLight}; /* Subtle gray */
+  color: ${({ theme }) => theme.colors.darkGray}; /* Less contrast */
+  font-size: 0.8rem; /* Slightly smaller */
+  font-weight: 500; /* No bold */
+  padding: 4px 10px; /* Less padding */
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius};
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: ${({ theme }) => theme.shadows.soft};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.error}; /* Slight hover effect */
+    color: white;
+  }
+
+  &:active {
+    transform: none; /* No scale effect */
+  }
+`;

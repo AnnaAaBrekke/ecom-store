@@ -6,6 +6,8 @@ import { calculateTotal } from "../../utils/calculateTotal";
 import { CircularProgress } from "@mui/material";
 import CartItem from "./CartItem";
 import { navigateToCheckout } from "../../utils/navigateToCheckout";
+import { StyledMainButton } from "../Buttons";
+import { TotalContainer } from "./Cart";
 
 const CartSidebar = () => {
   const {
@@ -59,7 +61,7 @@ const CartSidebar = () => {
             background: "white",
             boxShadow: "-2px 0px 10px rgba(0,0,0,0.1)",
             transition: "right 0.3s ease-in-out",
-            padding: "10px",
+            padding: "20px",
             overflowY: "auto",
             zIndex: 1000,
             borderLeft: "2px solid #eee",
@@ -78,7 +80,7 @@ const CartSidebar = () => {
           >
             ❌
           </button>
-          <h2 style={{ marginBottom: "20px", color: "navy" }}>Shopping Cart</h2>
+          <h2>Your Cart</h2>
 
           <ul style={{ padding: 0, listStyle: "none" }}>
             {cart.map((item) => (
@@ -93,27 +95,14 @@ const CartSidebar = () => {
           </ul>
 
           {/* Total Amount & Checkout Button */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: "20px",
-              width: "calc(100% - 40px)",
-              padding: "10px 20px",
-              background: "white",
-              borderTop: "2px solid #eee",
-              color: "black",
-            }}
-          >
+          <TotalContainer>
             <h3>Total: {totalAmount.toFixed(2)}kr</h3>
 
-            <button
+            <StyledMainButton
               onClick={() => navigateToCheckout(setLoading, navigate)}
               disabled={loading}
               style={{
                 cursor: loading ? "not-allowed" : "pointer",
-                width: "100%",
-                fontSize: "16px",
-                fontWeight: "bold",
               }}
             >
               {loading ? (
@@ -121,8 +110,8 @@ const CartSidebar = () => {
               ) : (
                 "Checkout"
               )}
-            </button>
-          </div>
+            </StyledMainButton>
+          </TotalContainer>
         </div>
       )}
     </>
