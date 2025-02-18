@@ -4,6 +4,7 @@ import { List, ListItem, ListItemButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import "../styles/Searchbar.css";
+import { useNavigate } from "react-router-dom";
 
 // Source: https://salehmubashar.com/blog/create-a-search-bar-in-react-js (TextField)
 // Source: https://www.youtube.com/watch?v=o1XcuaCcsDA (AutoComplete, Filter, Keydown)
@@ -11,6 +12,7 @@ import "../styles/Searchbar.css";
 const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedSuggestion, setSelectedSuggestion] = useState(-1);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
@@ -29,7 +31,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
 
   const handleSuggestionClick = (suggestion) => {
     setSearchInput(suggestion.title); // Set the title in the input
-    window.open(`/product/${suggestion.id}`, "_self"); // Navigate to the product page using its ID
+    navigate(`/product/${suggestion.id}`); // Navigate to the product page using its ID
     setShowSuggestions(false);
   };
 
@@ -44,7 +46,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
         setSelectedSuggestion((prev) => prev + 1);
       } else if (e.key === "Enter" && selectedSuggestion >= 0) {
         const selectedProduct = filteredSuggestions[selectedSuggestion];
-        window.open(`/product/${selectedProduct.id}`, "_self"); // Navigate to the product page
+        navigate(`/product/${selectedProduct.id}`); // Navigate to the product page
         setShowSuggestions(false);
       }
     }

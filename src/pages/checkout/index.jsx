@@ -1,7 +1,7 @@
 import React from "react";
 import useCart from "../../stores/cartStore";
 import { CheckoutButton } from "../../components/Buttons";
-import Cart from "../../components/Cart";
+import { Cart } from "../../components/cart";
 
 const CheckoutPage = () => {
   const cart = useCart((state) => state.cart);
