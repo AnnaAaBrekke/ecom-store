@@ -8,7 +8,7 @@ export const NavbarContainer = styled.nav`
   padding: 12px 24px;
   background-color: ${({ theme }) => theme.colors.layout};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
   font-family: ${({ theme }) => theme.typography.fontFamily};
 `;
 

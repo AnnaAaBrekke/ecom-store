@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { LogoImage, LogoLink } from "../../styles/Navbar.style";
 
 function Footer() {
   return (
     <StyledFooter>
       <p>&copy; 2025 Shopsy Ecom Store. All rights reserved.</p>
+      <LogoLink to="/">
+        <LogoImage src="/images/shopsy_logo.jpg"></LogoImage>
+      </LogoLink>
     </StyledFooter>
   );
 }
@@ -20,5 +24,5 @@ const StyledFooter = styled.footer`
   width: 100%;
   padding: 12px;
   text-align: center;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
 `;

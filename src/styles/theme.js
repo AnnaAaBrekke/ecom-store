@@ -13,7 +13,7 @@ export const theme = {
   },
 
   gradients: {
-    primaryGradient: "linear-gradient(135deg, #1B3A4B 0%, #455A64 100%)", // Smooth Midnight to Fjord Blue Gradient
+    primaryGradient: "linear-gradient(135deg, #1B3A4B 0%, #455A64 100%)",
   },
 
   typography: {
@@ -22,7 +22,10 @@ export const theme = {
     heading1: "32px",
   },
 
+
   borderRadius: "12px",
+  borderRadiusSecondary: "2px",
+
 
   shadows: {
     soft: "0px 4px 10px rgba(0, 0, 0, 0.1)",

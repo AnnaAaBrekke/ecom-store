@@ -14,7 +14,7 @@ function Navbar() {
     <NavbarContainer>
       <>
         <LogoLink to="/">
-          <LogoImage src="/public/images/shopsy_logo.jpg"></LogoImage>
+          <LogoImage src="/images/shopsy_logo.jpg"></LogoImage>
         </LogoLink>
       </>
       <NavLinks>
