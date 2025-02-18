@@ -48,7 +48,6 @@ const Product = ({ product, showViewButton = true }) => {
         </PriceContainer>
 
         <Tags>
-          <strong>Tags:</strong>{" "}
           {product.tags.map((tag, index) => (
             <Tag key={index}>{tag}</Tag>
           ))}

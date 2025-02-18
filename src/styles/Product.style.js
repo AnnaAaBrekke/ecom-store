@@ -27,7 +27,7 @@ export const Card = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   background: ${({ theme }) => theme.colors.background};
   transition: transform 0.3s ease;
-  height: 450px;
+  height: auto;
   width: 100%;
   box-shadow: ${({ theme }) => theme.shadows.soft};
   overflow: hidden;
@@ -53,7 +53,7 @@ export const CardBody = styled.div`
   flex-grow: 1; /* Makes sure all details fit well */
   width: 100%;
   padding: 10px;
-  text-align: center;
+  text-align: left;
 `;
 
 export const Title = styled.h2`
@@ -77,9 +77,9 @@ export const PriceContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-top: 6px;
   flex-wrap: wrap;
-  justify-content: center;
-  margin: 8px;
+  justify-content: left;
 `;
 
 export const Price = styled.span`
@@ -113,7 +113,7 @@ export const Rating = styled.div`
 
 export const Tags = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: left;
   gap: 6px;
   flex-wrap: wrap;
   margin-top: 8px;
@@ -129,8 +129,7 @@ export const Tag = styled.span`
 `;
 
 export const ViewButton = styled(Link)`
-  display: block;
-  width: 100%;
+  width: 90%;
   padding: 10px;
   background: ${({ theme }) => theme.gradients.primaryGradient};
   color: ${({ theme }) => theme.colors.white};

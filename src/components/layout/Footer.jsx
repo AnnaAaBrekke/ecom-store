@@ -20,7 +20,7 @@ const StyledFooter = styled.footer`
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.layout};
-  flex-grow: 1; /* Makes sure all details fit well */
+  flex-grow: 1;
   width: 100%;
   padding: 12px;
   text-align: center;
