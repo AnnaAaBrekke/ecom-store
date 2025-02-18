@@ -1,15 +1,14 @@
 import React from "react";
 import useCart from "../stores/cartStore";
 import { Link } from "react-router-dom";
+import { calculateTotal } from "../utils/calculateTotal";
+import QuantityCounter from "./Quantity";
 
 const Cart = () => {
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
     useCart();
 
-  const totalAmount = cart.reduce(
-    (total, item) => total + item.discountedPrice * item.quantity,
-    0
-  );
+  const totalAmount = calculateTotal(cart);
 
   if (cart.length === 0) {
     return (
@@ -26,22 +25,17 @@ const Cart = () => {
         {cart.map((item) => (
           <li key={item.id}>
             <img
-              src={item.image?.url || "/placeholder.jpg"}
+              src={item.image?.url || "https://placehold.co/400"}
               alt={item.image?.alt || item.title}
               style={{ width: "100px", height: "auto", objectFit: "cover" }}
             />
             <h3>{item.title}</h3>
 
-            <div>
-              <button
-                onClick={() => decreaseQuantity(item.id)}
-                disabled={item.quantity === 1}
-              >
-                -
-              </button>
-              <input type="number" value={item.quantity} min={1} readOnly />
-              <button onClick={() => increaseQuantity(item.id)}>+</button>
-            </div>
+            <QuantityCounter
+              quantity={item.quantity}
+              onIncrease={() => increaseQuantity(item.id)}
+              onDecrease={() => decreaseQuantity(item.id)}
+            />
 
             <p>
               Price:{" "}

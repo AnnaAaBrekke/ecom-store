@@ -2,6 +2,8 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import useCart from "../stores/cartStore";
 import { KeyboardArrowLeft } from "@mui/icons-material";
+import { calculateTotal } from "../utils/calculateTotal";
+import QuantityCounter from "./Quantity";
 
 const CartSidebar = () => {
   const {
@@ -13,14 +15,9 @@ const CartSidebar = () => {
     removeFromCart,
   } = useCart();
 
+  const totalAmount = calculateTotal(cart);
   const location = useLocation();
-  const isCheckoutPage = location.pathname === "/checkout"; // Detect if on checkout page
-
-  // Calculate total price
-  const totalAmount = cart.reduce(
-    (total, item) => total + item.discountedPrice * item.quantity,
-    0
-  );
+  const isCheckoutPage = location.pathname === "/checkout";
 
   return (
     <>
@@ -105,41 +102,11 @@ const CartSidebar = () => {
                     <h4 style={{ margin: "0 0 5px", color: "black" }}>
                       {item.title}
                     </h4>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "5px",
-                        color: "black",
-                      }}
-                    >
-                      <button
-                        onClick={() => decreaseQuantity(item.id)}
-                        disabled={item.quantity === 1}
-                        style={{
-                          border: "none",
-                          background: "#ddd",
-                          padding: "4px 8px",
-                          cursor: "pointer",
-                          borderRadius: "5px",
-                        }}
-                      >
-                        -
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button
-                        onClick={() => increaseQuantity(item.id)}
-                        style={{
-                          border: "none",
-                          background: "#ddd",
-                          padding: "4px 8px",
-                          cursor: "pointer",
-                          borderRadius: "5px",
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
+                    <QuantityCounter
+                      quantity={item.quantity}
+                      onIncrease={() => increaseQuantity(item.id)}
+                      onDecrease={() => decreaseQuantity(item.id)}
+                    />
                   </div>
                 </div>
                 <p style={{ marginTop: "5px", color: "black" }}>
