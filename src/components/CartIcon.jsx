@@ -1,20 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import useCart from "../stores/cartStore";
+import { CircularProgress } from "@mui/material";
+import { navigateToCheckout } from "../utils/navigateToCheckout";
 
 const CartIcon = () => {
-  const { cart, toggleCart } = useCart();
+  const { cart } = useCart();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const totalItems = useCart((state) =>
-    state.cart.reduce((total, item) => total + item.quantity, 0)
-  );
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
-      <Link to="/checkout">
-        <ShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
-        {totalItems > 0 && (
+      <button
+        onClick={() => navigateToCheckout(setLoading, navigate)}
+        style={{
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
+          position: "relative",
+        }}
+        disabled={loading} // Disable button when loading
+      >
+        {loading ? (
+          <CircularProgress size={30} color="inherit" /> // Show spinner when loading
+        ) : (
+          <ShoppingCartIcon style={{ fontSize: 30, color: "#333" }} />
+        )}
+        {totalItems > 0 && !loading && (
           <span
             style={{
               position: "absolute",
@@ -31,7 +46,7 @@ const CartIcon = () => {
             {totalItems}
           </span>
         )}
-      </Link>
+      </button>
     </div>
   );
 };

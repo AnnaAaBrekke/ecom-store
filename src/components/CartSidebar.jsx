@@ -1,9 +1,11 @@
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../stores/cartStore";
 import { KeyboardArrowLeft } from "@mui/icons-material";
 import { calculateTotal } from "../utils/calculateTotal";
+import { CircularProgress } from "@mui/material";
 import CartItem from "./CartItem";
+import { navigateToCheckout } from "../utils/navigateToCheckout";
 
 const CartSidebar = () => {
   const {
@@ -15,6 +17,8 @@ const CartSidebar = () => {
     removeFromCart,
   } = useCart();
 
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const totalAmount = calculateTotal(cart);
   const location = useLocation();
   const isCheckoutPage = location.pathname === "/checkout";
@@ -101,24 +105,23 @@ const CartSidebar = () => {
             }}
           >
             <h3>Total: {totalAmount.toFixed(2)}kr</h3>
-            <Link to="/checkout">
-              <button
-                onClick={toggleCart} // Close sidebar when going to checkout
-                style={{
-                  width: "100%",
-                  background: "green",
-                  color: "white",
-                  padding: "10px",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                }}
-              >
-                Checkout
-              </button>
-            </Link>
+
+            <button
+              onClick={() => navigateToCheckout(setLoading, navigate)}
+              disabled={loading}
+              style={{
+                cursor: loading ? "not-allowed" : "pointer",
+                width: "100%",
+                fontSize: "16px",
+                fontWeight: "bold",
+              }}
+            >
+              {loading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Checkout"
+              )}
+            </button>
           </div>
         </div>
       )}
