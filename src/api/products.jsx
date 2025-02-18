@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Product from "../components/Product";
 import useFetch from "./apiBase";
+import { Product } from "../components/product";
 
 const url = "https://v2.api.noroff.dev/online-shop";
 

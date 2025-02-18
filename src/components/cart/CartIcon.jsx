@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import useCart from "../stores/cartStore";
+import useCart from "../../stores/cartStore";
 import { CircularProgress } from "@mui/material";
-import { navigateToCheckout } from "../utils/navigateToCheckout";
+import { navigateToCheckout } from "../../utils/navigateToCheckout";
 
 const CartIcon = () => {
   const { cart } = useCart();

@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Product from "../../components/Product";
+import { Product, Reviews } from "../../components/product";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import useCart from "../../stores/cartStore";
 import useProduct from "../../api/product";
-import Reviews from "../../components/Reviews";
 
 const ProductPage = () => {
   const { id } = useParams();

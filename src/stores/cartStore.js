@@ -1,4 +1,3 @@
-import { StartRounded } from "@mui/icons-material";
 import { create } from "zustand";
 
 const useCart = create((set) => ({

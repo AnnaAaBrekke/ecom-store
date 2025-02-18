@@ -1,7 +1,7 @@
 import React from "react";
-import useCart from "../stores/cartStore";
+import useCart from "../../stores/cartStore";
 import { Link } from "react-router-dom";
-import { calculateTotal } from "../utils/calculateTotal";
+import { calculateTotal } from "../../utils/calculateTotal";
 import CartItem from "./CartItem";
 
 const Cart = () => {

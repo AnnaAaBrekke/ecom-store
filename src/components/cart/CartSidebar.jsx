@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import useCart from "../stores/cartStore";
+import useCart from "../../stores/cartStore";
 import { KeyboardArrowLeft } from "@mui/icons-material";
-import { calculateTotal } from "../utils/calculateTotal";
+import { calculateTotal } from "../../utils/calculateTotal";
 import { CircularProgress } from "@mui/material";
 import CartItem from "./CartItem";
-import { navigateToCheckout } from "../utils/navigateToCheckout";
+import { navigateToCheckout } from "../../utils/navigateToCheckout";
 
 const CartSidebar = () => {
   const {
