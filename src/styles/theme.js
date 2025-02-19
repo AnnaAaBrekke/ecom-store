@@ -22,10 +22,8 @@ export const theme = {
     heading1: "32px",
   },
 
-
   borderRadius: "12px",
-  borderRadiusSecondary: "2px",
-
+  borderRadiusSecondary: "3px",
 
   shadows: {
     soft: "0px 4px 10px rgba(0, 0, 0, 0.1)",

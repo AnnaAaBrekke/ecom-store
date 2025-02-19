@@ -49,6 +49,6 @@ export const StyledMainButton = styled.button`
   justify-content: flex-end;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.secondary};
+    background: ${({ theme }) => theme.colors.success};
   }
 `;

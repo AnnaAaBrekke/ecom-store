@@ -2,7 +2,7 @@ import React from "react";
 import QuantityCounter from "./Quantity";
 import styled from "styled-components";
 import {
-  Card, // 🟢 Used Product Card
+  Card,
   CardBody,
   ProductImage,
   PriceContainer,
@@ -10,16 +10,17 @@ import {
   OriginalPrice,
   DiscountTag,
   Title,
-} from "../../styles/Product.style"; // Reusing Product styles
+} from "../../styles/Product.style";
 
 const CartItem = ({
   item,
   increaseQuantity,
   decreaseQuantity,
   removeFromCart,
+  isSidebar,
 }) => {
   return (
-    <StyledCartItem>
+    <StyledCartItem isSidebar={isSidebar}>
       <ProductImage
         src={item.image?.url || "/placeholder.jpg"}
         alt={item.image?.alt || item.title}
@@ -66,17 +67,17 @@ const CartItem = ({
 export default CartItem;
 
 // 🟢 Styled Components for CartItem, reusing styles where possible
-
 export const StyledCartItem = styled(Card)`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${({ isSidebar }) => (isSidebar ? "column" : "row")};
   text-align: left;
-  align-items: left;
-  justify-content: space-between;
+  align-items: ${({ isSidebar }) => (isSidebar ? "center" : "left")};
+  justify-content: ${({ isSidebar }) =>
+    isSidebar ? "center" : "space-between"};
   padding: 12px;
-  gap: 1rem;
-  width: 65vh;
+  width: ${({ isSidebar }) => (isSidebar ? "80%" : "65vh")};
   height: auto;
+  margin-bottom: 1rem;
 `;
 
 const RemoveButton = styled.button`
@@ -84,19 +85,19 @@ const RemoveButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: ${({ theme }) => theme.colors.grayLight}; /* Subtle gray */
-  color: ${({ theme }) => theme.colors.darkGray}; /* Less contrast */
-  font-size: 0.8rem; /* Slightly smaller */
-  font-weight: 500; /* No bold */
-  padding: 4px 10px; /* Less padding */
+  background: ${({ theme }) => theme.colors.grayLight};
+  color: ${({ theme }) => theme.colors.darkGray};
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 10px;
   border: none;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   box-shadow: ${({ theme }) => theme.shadows.soft};
 
   &:hover {
-    background: ${({ theme }) => theme.colors.error}; /* Slight hover effect */
+    background: ${({ theme }) => theme.colors.error};
     color: white;
   }
 

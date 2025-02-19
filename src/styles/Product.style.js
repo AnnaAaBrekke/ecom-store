@@ -55,10 +55,10 @@ export const CardBody = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.1rem;
+  font-size: 22px;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.typography.headingFont};
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 `;
 
 export const Description = styled.p`
@@ -76,7 +76,8 @@ export const PriceContainer = styled.div`
   align-items: center;
   gap: 8px;
   margin-top: 6px;
-  flex-wrap: wrap;
+  margin-bottom: 10px;
+  flex-wrap: wrp;
   justify-content: left;
 `;
 

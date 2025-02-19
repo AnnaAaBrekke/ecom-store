@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Products from "../../api/products";
 import SearchBar from "../../components/SearchBar";
 import styled from "styled-components";
+import { Heading, Paragraph } from "../../styles/Typography.style";
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -11,10 +12,12 @@ const Home = () => {
     <div>
       <HeroSection>
         <HeroContent>
-          <h1>
+          <Heading style={{ color: "white" }}>
             Welcome to <span>Shopsy</span>
-          </h1>
-          <p>Your one-stop shop for the latest trends and deals!</p>
+          </Heading>
+          <Paragraph style={{ color: "white" }}>
+            Your one-stop shop for the latest trends and deals!
+          </Paragraph>
         </HeroContent>
       </HeroSection>
       <SearchBar

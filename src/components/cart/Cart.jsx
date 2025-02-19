@@ -5,6 +5,7 @@ import { calculateTotal } from "../../utils/calculateTotal";
 import CartItem from "./CartItem";
 import styled from "styled-components";
 import { CheckoutButton } from "../Buttons";
+import { Paragraph } from "../../styles/Typography.style";
 
 const Cart = () => {
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
@@ -14,10 +15,11 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <p>
+      <Paragraph>
         Your cart is empty.
+        <br></br>
         <Link to="/">Go Back To Shopping</Link>
-      </p>
+      </Paragraph>
     );
   }
 
@@ -51,7 +53,6 @@ const StyledCartList = styled.div`
   align-items: center;
   justify-content: center;
   max-width: 800px;
-
   gap: 1rem;
   background: ${({ theme }) => theme.colors.background};
   padding: 20px;
@@ -63,17 +64,14 @@ const StyledCartList = styled.div`
 export const StyledTotal = styled.h2`
   text-align: center;
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
+  padding: 1rem;
   color: ${({ theme }) => theme.colors.primary};
-  margin-top: 20px;
-  padding: 10px;
-  display: flex;
-  justify-content: flex-end;
 `;
 
 export const TotalContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: 20px;
   margin-bottom: 10px;
