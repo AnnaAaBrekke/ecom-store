@@ -24,4 +24,6 @@ const PageWrapper = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
+  margin: 2px;
+  padding: 6px;
 `;

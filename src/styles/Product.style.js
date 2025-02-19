@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-  padding: 16px;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 2rem;
+  margin: 1rem;
   box-sizing: border-box;
+  overflow: hidden;
 `;
 
 export const Message = styled.div`
@@ -28,7 +26,7 @@ export const Card = styled.div`
   background: ${({ theme }) => theme.colors.background};
   transition: transform 0.3s ease;
   height: auto;
-  width: 100%;
+  width: 90%;
   box-shadow: ${({ theme }) => theme.shadows.soft};
   overflow: hidden;
   margin: 0 auto;
@@ -41,7 +39,7 @@ export const Card = styled.div`
 
 export const ProductImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 270px;
   object-fit: cover;
   border-radius: ${({ theme }) => theme.borderRadius};
 `;
@@ -50,7 +48,7 @@ export const CardBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1; /* Makes sure all details fit well */
+  flex-grow: 1;
   width: 100%;
   padding: 10px;
   text-align: left;
