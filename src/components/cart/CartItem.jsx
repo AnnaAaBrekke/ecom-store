@@ -74,7 +74,7 @@ export const StyledCartItem = styled(Card)`
   align-items: left;
   justify-content: space-between;
   padding: 12px;
-  gap: 10px;
+  gap: 1rem;
   width: 65vh;
   height: auto;
 `;

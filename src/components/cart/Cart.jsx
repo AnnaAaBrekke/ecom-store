@@ -22,8 +22,8 @@ const Cart = () => {
   }
 
   return (
-    <div>
-      <ul>
+    <>
+      <StyledCartList>
         {cart.map((item) => (
           <CartItem
             key={item.id}
@@ -33,23 +33,38 @@ const Cart = () => {
             removeFromCart={removeFromCart}
           />
         ))}
-      </ul>
+      </StyledCartList>
       <TotalContainer>
         <StyledTotal>Total Amount: {totalAmount.toFixed(2)}kr</StyledTotal>
         {cart.length > 0 && <CheckoutButton />}
       </TotalContainer>
-    </div>
+    </>
   );
 };
 
 export default Cart;
 
 // Styled Components
+const StyledCartList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 800px;
+
+  gap: 1rem;
+  background: ${({ theme }) => theme.colors.background};
+  padding: 20px;
+  margin: 2rem auto; /* Centers the cart */
+  border-radius: ${({ theme }) => theme.borderRadius};
+  box-shadow: ${({ theme }) => theme.shadows.soft};
+`;
+
 export const StyledTotal = styled.h2`
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.primary}; /* Use theme's primary color */
+  color: ${({ theme }) => theme.colors.primary};
   margin-top: 20px;
   padding: 10px;
   display: flex;
@@ -63,6 +78,6 @@ export const TotalContainer = styled.div`
   margin-top: 20px;
   margin-bottom: 10px;
   padding: 15px;
-  border-top: 2px solid ${({ theme }) => theme.colors.accent}; /* Subtle separator */
-  border-bottom: 2px solid ${({ theme }) => theme.colors.accent}; /* Subtle separator */
+  border-top: 2px solid ${({ theme }) => theme.colors.accent};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.accent};
 `;

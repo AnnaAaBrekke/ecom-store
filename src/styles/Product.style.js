@@ -39,7 +39,7 @@ export const Card = styled.div`
 
 export const ProductImage = styled.img`
   width: 100%;
-  height: 270px;
+  height: 240px;
   object-fit: cover;
   border-radius: ${({ theme }) => theme.borderRadius};
 `;
