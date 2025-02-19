@@ -22,10 +22,10 @@ const CartIcon = () => {
           cursor: "pointer",
           position: "relative",
         }}
-        disabled={loading} // Disable button when loading
+        disabled={loading}
       >
         {loading ? (
-          <CircularProgress size={30} color="inherit" /> // Show spinner when loading
+          <CircularProgress size={30} color="inherit" />
         ) : (
           <ShoppingCartIcon style={{ fontSize: 30, color: "#1B3A4B" }} />
         )}
