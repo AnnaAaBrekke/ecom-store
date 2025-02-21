@@ -61,16 +61,6 @@ export const Title = styled.h2`
   margin-bottom: 10px;
 `;
 
-export const Description = styled.p`
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.text};
-  flex-grow: 1; /* Prevents overflow */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 50px;
-  white-space: nowrap;
-`;
-
 export const PriceContainer = styled.div`
   display: flex;
   align-items: center;
@@ -145,23 +135,4 @@ export const ViewButton = styled(Link)`
   }
 `;
 
-// Product Single Page
 
-export const AddToCartButton = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: ${({ theme }) => theme.colors.primary};
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 12px 16px;
-  border: none;
-  border-radius: ${({ theme }) => theme.borderRadius};
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.secondary};
-  }
-`;

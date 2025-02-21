@@ -21,7 +21,6 @@ const Product = ({ product, showViewButton = true }) => {
   const discount =
     product.price > product.discountedPrice
       ? Math.round(
-          ((product.price - product.discountedPrice) / product.price) * 100
         )
       : 0;
 
