@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SubmitFormButton } from "./Buttons";
+import styled from "styled-components";
 
 const schema = yup.object().shape({
   fullName: yup
@@ -56,32 +57,74 @@ function ContactForm() {
   };
 
   return (
-    <div>
+    <StyledForm>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="fullName">Full Name</label>
-        <input
-          type="text"
-          {...register("fullName")}
-          placeholder="Your full name"
-        />
-        <p style={{ color: "red" }}>{errors.fullName?.message}</p>
-
-        <label htmlFor="email">Email</label>
-        <input type="email" {...register("email")} placeholder="Email" />
-        <p style={{ color: "red" }}>{errors.email?.message}</p>
-
-        <label htmlFor="subject">Subject</label>
-        <input type="text" {...register("subject")} placeholder="Subject" />
-        <p style={{ color: "red" }}>{errors.subject?.message}</p>
-
-        <label htmlFor="body">Body</label>
-        <input type="text" {...register("body")} placeholder="Your message" />
-        <p style={{ color: "red" }}>{errors.body?.message}</p>
+        <FormGroup>
+          <label htmlFor="fullName">Full Name</label>
+          <Input
+            type="text"
+            {...register("fullName")}
+            placeholder="Your full name"
+          />
+          <p style={{ color: "red" }}>{errors.fullName?.message}</p>
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="email">Email</label>
+          <Input type="email" {...register("email")} placeholder="Email" />
+          <p style={{ color: "red" }}>{errors.email?.message}</p>
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="subject">Subject</label>
+          <Input type="text" {...register("subject")} placeholder="Subject" />
+          <p style={{ color: "red" }}>{errors.subject?.message}</p>
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="body">Body</label>
+          <Input type="text" {...register("body")} placeholder="Your message" />
+          <p style={{ color: "red" }}>{errors.body?.message}</p>
+        </FormGroup>
         <SubmitFormButton isLoading={isLoading} />
       </form>
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-    </div>
+    </StyledForm>
   );
 }
 
 export default ContactForm;
+
+const StyledForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin: 1rem;
+  padding: 2.5rem;
+  width: 340px;
+  background: ${({ theme }) => theme.colors.accent};
+  border-radius: ${({ theme }) => theme.borderRadius};
+`;
+
+const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+`;
+
+const Input = styled.input`
+  padding: 0.75rem;
+  border: 2px solid ${({ theme }) => theme.colors.accent};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  background: ${({ theme }) => theme.colors.backgroundLight};
+  transition: all 0.3s ease;
+  font-size: 1rem;
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.primary};
+    outline: none;
+    box-shadow: 0 0 8px ${({ theme }) => theme.colors.primaryLight};
+  }
+`;

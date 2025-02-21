@@ -6,12 +6,13 @@ export const Heading = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
   text-align: center;
   margin-bottom: 15px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 `;
 
 export const SubHeader = styled.h2`
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.secondary};
   margin-bottom: 20px;
   text-align: center;
 `;

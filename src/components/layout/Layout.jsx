@@ -15,7 +15,6 @@ const Layout = ({ children }) => {
 
 export default Layout;
 
-// ✅ Ensures the footer is at the bottom
 const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
