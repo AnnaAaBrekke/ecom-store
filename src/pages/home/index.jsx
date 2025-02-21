@@ -13,10 +13,10 @@ const Home = () => {
       <HeroSection>
         <Overlay />
         <HeroContent>
-          <Heading style={{ color: "white" }}>
+          <Heading>
             Welcome to <span>Shopsy</span>
           </Heading>
-          <Paragraph style={{ color: "white" }}>
+          <Paragraph>
             Your one-stop shop for the latest trends and deals!
           </Paragraph>
         </HeroContent>
@@ -66,12 +66,14 @@ const HeroContent = styled.div`
   z-index: 2;
 
   h1 {
+    color: ${({ theme }) => theme.colors.white};
     font-size: 58px;
     font-weight: 800;
     font-family: ${({ theme }) => theme.typography.fontFamily};
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 
     span {
-      color:rgb(244, 218, 114);
+      color: ${({ theme }) => theme.colors.other};
     }
   }
 
@@ -80,5 +82,6 @@ const HeroContent = styled.div`
     margin-bottom: 20px;
     font-weight: 500;
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    color: ${({ theme }) => theme.colors.white};
   }
 `;

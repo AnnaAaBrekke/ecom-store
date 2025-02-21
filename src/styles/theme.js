@@ -5,6 +5,7 @@ export const theme = {
     layout: "#BCCACC",
     accent: "#BCCACC", // Cool Slate for Subtle Highlights
     background: "#ECEFF1", // Polar Gray for a Clean and Soft Look
+    other: "#F4DA72",
     text: "#0D1B2A", // Nordic Black for High Contrast Readability
     success: "#4caf50", // Green for Success Messages
     error: "#ff3d3d", // Bright Red for Errors

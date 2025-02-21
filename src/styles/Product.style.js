@@ -118,8 +118,8 @@ export const Tag = styled.span`
 `;
 
 export const ViewButton = styled(Link)`
-  width: 90%;
   padding: 10px;
+  width: 210px;
   background: ${({ theme }) => theme.gradients.primaryGradient};
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
@@ -131,8 +131,8 @@ export const ViewButton = styled(Link)`
 
   &:hover {
     transform: scale(1.05);
+    background: ${({ theme }) => theme.colors.other};
+    color: ${({ theme }) => theme.colors.primary};
     box-shadow: ${({ theme }) => theme.shadows.strong};
   }
 `;
-
-

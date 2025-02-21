@@ -96,8 +96,6 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
 
 export default SearchBar;
 
-// Styled Components
-
 const SearchContainer = styled.div`
   position: relative;
   width: 100%;
@@ -139,8 +137,11 @@ const SuggestionList = styled(List)`
 
 const SuggestionItem = styled(ListItem)`
   padding: 0;
-`;
 
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.other};
+  }
+`;
 const StyledListItemButton = styled(ListItemButton)`
   padding: 8px 16px;
   font-size: 14px;

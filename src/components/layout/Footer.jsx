@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { LogoImage, LogoLink } from "../../styles/Navbar.style";
+import { Paragraph } from "../../styles/Typography.style";
 
 function Footer() {
   return (
     <StyledFooter>
-      <p>&copy; 2025 Shopsy Ecom Store. All rights reserved.</p>
+      <Paragraph>&copy; 2025 Shopsy Ecom Store. All rights reserved.</Paragraph>
       <LogoLink to="/">
         <LogoImage src="/images/shopsy_logo.jpg"></LogoImage>
       </LogoLink>

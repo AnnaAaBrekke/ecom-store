@@ -79,8 +79,9 @@ function ContactForm() {
           <p style={{ color: "red" }}>{errors.subject?.message}</p>
         </FormGroup>
         <FormGroup>
-          <label htmlFor="body">Body</label>
-          <Input type="text" {...register("body")} placeholder="Your message" />
+          <label htmlFor="body">Message</label>
+          <TextArea {...register("body")} placeholder="Your message..." />
+
           <p style={{ color: "red" }}>{errors.body?.message}</p>
         </FormGroup>
         <SubmitFormButton isLoading={isLoading} />
@@ -96,7 +97,6 @@ const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-items: center;
-  margin: 1rem;
   padding: 2.5rem;
   width: 340px;
   background: ${({ theme }) => theme.colors.accent};
@@ -121,6 +121,24 @@ const Input = styled.input`
   background: ${({ theme }) => theme.colors.backgroundLight};
   transition: all 0.3s ease;
   font-size: 1rem;
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.primary};
+    outline: none;
+    box-shadow: 0 0 8px ${({ theme }) => theme.colors.primaryLight};
+  }
+`;
+
+const TextArea = styled.textarea`
+  padding: 0.75rem;
+  border: 2px solid ${({ theme }) => theme.colors.accent};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  background: ${({ theme }) => theme.colors.backgroundLight};
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  height: 120px;
+  resize: vertical;
+  line-height: 1.4;
 
   &:focus {
     border-color: ${({ theme }) => theme.colors.primary};

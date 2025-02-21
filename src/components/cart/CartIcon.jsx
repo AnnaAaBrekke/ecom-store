@@ -35,7 +35,7 @@ const CartIcon = () => {
               position: "absolute",
               top: "-5px",
               right: "-10px",
-              backgroundColor: "orange",
+              backgroundColor: "rgb(242, 198, 20)",
               color: "white",
               borderRadius: "50%",
               padding: "4px 8px",

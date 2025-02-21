@@ -7,7 +7,7 @@ export const NavbarContainer = styled.nav`
   align-items: center;
   padding: 12px 24px;
   background-color: ${({ theme }) => theme.colors.layout};
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: ${({ theme }) => theme.borderRadiusSecondary};
   font-family: ${({ theme }) => theme.typography.fontFamily};
 `;
@@ -17,17 +17,17 @@ export const LogoLink = styled(Link)`
   transition: color 0.2s ease-in-out;
 
   &:hover {
-    color: #ffd700;
+    color: ${({ theme }) => theme.colors.other};
   }
 `;
 
 export const LogoImage = styled.img`
-  width: 80px; /* Adjust size */
+  width: 80px;
   height: auto;
   transition: opacity 0.3s ease-in-out;
 
   &:hover {
-    opacity: 0.8; /* Subtle hover effect */
+    opacity: 0.8;
   }
 `;
 
@@ -56,7 +56,8 @@ export const NavLinkStyled = styled(Link)`
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
   &:hover {
-    background-color: #ffd700;
+    background-color: ${({ theme }) => theme.colors.other};
+
     color: #4a4a4a;
   }
 `;

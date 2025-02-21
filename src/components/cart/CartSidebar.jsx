@@ -108,7 +108,7 @@ const SidebarContainer = styled.div`
   background: ${({ theme }) => theme.colors.white};
   box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
   transition: right 0.3s ease-in-out;
-  padding: 20px;
+  padding: 0.5rem;
   overflow-y: auto;
   z-index: 1000;
   border-left: 2px solid ${({ theme }) => theme.colors.grayLight};

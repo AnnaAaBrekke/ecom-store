@@ -1,11 +1,11 @@
 import React from "react";
 import useCart from "../../stores/cartStore";
-import { Link } from "react-router-dom";
 import { calculateTotal } from "../../utils/calculateTotal";
 import CartItem from "./CartItem";
 import styled from "styled-components";
 import { CheckoutButton } from "../Buttons";
 import { Paragraph } from "../../styles/Typography.style";
+import { BackToShopLink } from "../../pages/checkoutSuccess";
 
 const Cart = () => {
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
@@ -15,11 +15,11 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <Paragraph>
-        Your cart is empty.
+      <StyledEmptyContainer>
+        <Paragraph> Your cart is empty.</Paragraph>
         <br></br>
-        <Link to="/">Go Back To Shopping</Link>
-      </Paragraph>
+        <BackToShopLink to="/">Go Back To Shopping</BackToShopLink>
+      </StyledEmptyContainer>
     );
   }
 
@@ -78,4 +78,11 @@ export const TotalContainer = styled.div`
   padding: 15px;
   border-top: 2px solid ${({ theme }) => theme.colors.accent};
   border-bottom: 2px solid ${({ theme }) => theme.colors.accent};
+`;
+
+export const StyledEmptyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

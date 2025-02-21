@@ -35,7 +35,7 @@ const SuccessContainer = styled.div`
   padding: 2rem;
 `;
 
-const BackToShopLink = styled(Link)`
+export const BackToShopLink = styled(Link)`
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   background: ${({ theme }) => theme.colors.primary};

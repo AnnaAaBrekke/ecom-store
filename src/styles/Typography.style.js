@@ -6,7 +6,6 @@ export const Heading = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
   text-align: center;
   margin-bottom: 15px;
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
 `;
 
 export const SubHeader = styled.h2`
