@@ -1,16 +1,16 @@
 export const theme = {
   colors: {
-    primary: "#1B3A4B", // Deep Midnight for a Bold and Strong Feel
-    secondary: "#455A64", // Fjord Blue for a Cool and Modern Accent
+    primary: "#1B3A4B",
+    secondary: "#455A64",
     layout: "#BCCACC",
-    accent: "#BCCACC", // Cool Slate for Subtle Highlights
-    background: "#ECEFF1", // Polar Gray for a Clean and Soft Look
+    accent: "#BCCACC",
+    background: "#ECEFF1",
     other: "#F4DA72",
-    text: "#0D1B2A", // Nordic Black for High Contrast Readability
-    success: "#4caf50", // Green for Success Messages
-    error: "#ff3d3d", // Bright Red for Errors
-    white: "#ffffff", // Classic White for Contrast
-    black: "#000000", // Deep Black for Depth
+    text: "#0D1B2A",
+    success: "#4caf50",
+    error: "#ff3d3d",
+    white: "#ffffff",
+    black: "#000000",
   },
 
   gradients: {
@@ -18,7 +18,7 @@ export const theme = {
   },
 
   typography: {
-    fontFamily: "'Playfair Display', serif", // Elegant & Stylish Font
+    fontFamily: "'Playfair Display', serif",
     fontSize: "16px",
     heading1: "32px",
   },

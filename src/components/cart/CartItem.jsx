@@ -66,7 +66,6 @@ const CartItem = ({
 
 export default CartItem;
 
-// 🟢 Styled Components for CartItem, reusing styles where possible
 export const StyledCartItem = styled(Card)`
   display: flex;
   flex-direction: ${({ isSidebar }) => (isSidebar ? "column" : "row")};

@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SubmitFormButton } from "./Buttons";
-import styled from "styled-components";
+import { Input, Label, StyledForm, TextArea } from "../styles/Form.style";
+import { FormGroup } from "@mui/material";
 
 const schema = yup.object().shape({
   fullName: yup
@@ -60,7 +61,7 @@ function ContactForm() {
     <StyledForm>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
-          <label htmlFor="fullName">Full Name</label>
+          <Label htmlFor="fullName">Full Name</Label>
           <Input
             type="text"
             {...register("fullName")}
@@ -69,17 +70,17 @@ function ContactForm() {
           <p style={{ color: "red" }}>{errors.fullName?.message}</p>
         </FormGroup>
         <FormGroup>
-          <label htmlFor="email">Email</label>
+          <Label htmlFor="email">Email</Label>
           <Input type="email" {...register("email")} placeholder="Email" />
           <p style={{ color: "red" }}>{errors.email?.message}</p>
         </FormGroup>
         <FormGroup>
-          <label htmlFor="subject">Subject</label>
+          <Label htmlFor="subject">Subject</Label>
           <Input type="text" {...register("subject")} placeholder="Subject" />
           <p style={{ color: "red" }}>{errors.subject?.message}</p>
         </FormGroup>
         <FormGroup>
-          <label htmlFor="body">Message</label>
+          <Label htmlFor="body">Message</Label>
           <TextArea {...register("body")} placeholder="Your message..." />
 
           <p style={{ color: "red" }}>{errors.body?.message}</p>
@@ -92,57 +93,3 @@ function ContactForm() {
 }
 
 export default ContactForm;
-
-const StyledForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  padding: 2.5rem;
-  width: 340px;
-  background: ${({ theme }) => theme.colors.accent};
-  border-radius: ${({ theme }) => theme.borderRadius};
-`;
-
-const FormGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  label {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 0.3rem;
-  }
-`;
-
-const Input = styled.input`
-  padding: 0.75rem;
-  border: 2px solid ${({ theme }) => theme.colors.accent};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  background: ${({ theme }) => theme.colors.backgroundLight};
-  transition: all 0.3s ease;
-  font-size: 1rem;
-
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.primary};
-    outline: none;
-    box-shadow: 0 0 8px ${({ theme }) => theme.colors.primaryLight};
-  }
-`;
-
-const TextArea = styled.textarea`
-  padding: 0.75rem;
-  border: 2px solid ${({ theme }) => theme.colors.accent};
-  border-radius: ${({ theme }) => theme.borderRadius};
-  background: ${({ theme }) => theme.colors.backgroundLight};
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  height: 120px;
-  resize: vertical;
-  line-height: 1.4;
-
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.primary};
-    outline: none;
-    box-shadow: 0 0 8px ${({ theme }) => theme.colors.primaryLight};
-  }
-`;

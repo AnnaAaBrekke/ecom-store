@@ -3,7 +3,7 @@
 }
 
 .search-suggestion-line.active {
-  background-color: #f0f0f0; /* Highlight color for active suggestion */
+  background-color: yellow; /* Highlight color for active suggestion */
 }
 
 .search-suggestion-line:hover {

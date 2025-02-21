@@ -32,7 +32,7 @@ export const Card = styled.div`
   margin: 0 auto;
 
   &:hover {
-    transform: translateY(-5px); /* Subtle floating effect */
+    transform: translateY(-5px);
     box-shadow: ${({ theme }) => theme.shadows.strong};
   }
 `;

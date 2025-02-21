@@ -5,7 +5,7 @@ import CartItem from "./CartItem";
 import styled from "styled-components";
 import { CheckoutButton } from "../Buttons";
 import { Paragraph } from "../../styles/Typography.style";
-import { BackToShopLink } from "../../pages/checkoutSuccess";
+import { BackToShopLink } from "../../styles/Navbar.style";
 
 const Cart = () => {
   const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =

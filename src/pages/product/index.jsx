@@ -9,7 +9,7 @@ import styled from "styled-components";
 const ProductPage = () => {
   const { id } = useParams();
   const addToCart = useCart((state) => state.addToCart);
-  const { data: product = {}, isLoading, isError } = useProduct(id); // ✅ Use API hook
+  const { data: product = {}, isLoading, isError } = useProduct(id);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError)

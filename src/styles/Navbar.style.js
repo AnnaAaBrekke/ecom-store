@@ -61,3 +61,18 @@ export const NavLinkStyled = styled(Link)`
     color: #4a4a4a;
   }
 `;
+
+export const BackToShopLink = styled(Link)`
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  text-decoration: none;
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
+  transition: background 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primaryDark};
+    transform: scale(1.05);
+  }
+`;

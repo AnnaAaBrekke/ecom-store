@@ -9,7 +9,7 @@ const useCart = create((set) => ({
       const existingProduct = state.cart.find((item) => item.id === product.id);
 
       if (existingProduct) {
-        // Increase quantity if the product already exists in the cart
+        // Increases the quantity if the product already exists in the cart
         return {
           cart: state.cart.map((item) =>
             item.id === product.id
@@ -19,7 +19,6 @@ const useCart = create((set) => ({
         };
       }
 
-      // The original add to cart
       return { cart: [...state.cart, { ...product, quantity: 1 }] };
     }),
 
