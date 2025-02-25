@@ -39,7 +39,7 @@ const ProductPage = () => {
         <Reviews reviews={product.reviews} />
         <AddToCartButton onClick={handleAddToCart} disabled={loading}>
           {loading ? (
-            <CircularProgress size={30} paddingRight={5} color="inherit" />
+            <CircularProgress size={30} color="inherit" />
           ) : (
             <>
               <StyledAddToCartIcon />
