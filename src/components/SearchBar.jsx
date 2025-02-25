@@ -3,7 +3,6 @@ import TextField from "@mui/material/TextField";
 import { List, ListItem, ListItemButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import "../styles/Searchbar.css";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,11 +13,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
-    if (e.target.value.length > 0) {
-      setShowSuggestions(true);
-    } else {
-      setShowSuggestions(false);
-    }
+    setShowSuggestions(e.target.value.length > 0);
   };
 
   const handleSearchClose = () => {
@@ -56,8 +51,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
 
   return (
     <SearchContainer>
-      <TextField
-        id="outlined-basic"
+      <StyledTextField
         variant="outlined"
         fullWidth
         label="Search"
@@ -77,9 +71,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
           {filteredSuggestions.slice(0, 5).map((suggestion, index) => (
             <SuggestionItem
               key={suggestion.id}
-              className={`search-suggestion-line ${
-                selectedSuggestion === index ? "active" : ""
-              }`}
+              active={selectedSuggestion === index}
             >
               <StyledListItemButton
                 onClick={() => handleSuggestionClick(suggestion)}
@@ -100,6 +92,12 @@ const SearchContainer = styled.div`
   position: relative;
   width: 100%;
   padding-top: 6px;
+`;
+
+const StyledTextField = styled(TextField)`
+  && {
+    background: ${({ theme }) => theme.colors.background};
+  }
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
@@ -137,11 +135,15 @@ const SuggestionList = styled(List)`
 
 const SuggestionItem = styled(ListItem)`
   padding: 0;
+  background-color: ${({ active, theme }) =>
+    active ? theme.colors.other : "inherit"};
+  transition: background-color 0.2s ease;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.other};
   }
 `;
+
 const StyledListItemButton = styled(ListItemButton)`
   padding: 8px 16px;
   font-size: 14px;
