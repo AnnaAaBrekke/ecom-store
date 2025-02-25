@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import useFetch from "./apiBase";
 import { Product } from "../components/product";
+import { GridContainer, Message } from "../styles/Product.style";
 
 const Products = ({ searchInput, setSuggestions }) => {
   const { data: products, isLoading, isError } = useFetch("/");
@@ -16,32 +17,25 @@ const Products = ({ searchInput, setSuggestions }) => {
     }
   }, [products, setSuggestions]);
 
-  if (isLoading) return <div>Loading products...</div>;
+  if (isLoading) return <Message>Loading products...</Message>;
   if (isError)
-    return <div>Error fetching products. Please try again later.</div>;
+    return <Message>Error fetching products. Please try again later.</Message>;
 
   const filteredProducts = products.filter((product) =>
     product.title?.toLowerCase().includes(searchInput?.toLowerCase() || "")
   );
 
   return (
-    <div style={gridContainerStyle}>
+    <GridContainer>
       {filteredProducts.length > 0 ? (
         filteredProducts
           .slice(0, 12)
           .map((product) => <Product key={product.id} product={product} />)
       ) : (
-        <div>No products match your search.</div>
+        <Message>No products match your search.</Message>
       )}
-    </div>
+    </GridContainer>
   );
 };
-export default Products;
 
-// Fix styling later - just for structure purpose
-const gridContainerStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(3, 1fr)",
-  gap: "16px",
-  padding: "16px",
-};
+export default Products;

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Products from "../../api/products";
 import SearchBar from "../../components/SearchBar";
+import styled from "styled-components";
+import { Heading, Paragraph } from "../../styles/Typography.style";
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -8,7 +10,17 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Home</h1>
+      <HeroSection>
+        <Overlay />
+        <HeroContent>
+          <Heading>
+            Welcome to <span>Shopsy</span>
+          </Heading>
+          <Paragraph>
+            Your one-stop shop for the latest trends and deals!
+          </Paragraph>
+        </HeroContent>
+      </HeroSection>
       <SearchBar
         searchInput={searchInput}
         setSearchInput={setSearchInput}
@@ -20,3 +32,56 @@ const Home = () => {
 };
 
 export default Home;
+
+const HeroSection = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 45vh;
+  text-align: center;
+  background-image: url("/images/andrew-ridley-jR4Zf-riEjI-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: ${({ theme }) => theme.colors.white};
+  padding: 20px;
+  position: relative;
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
+  overflow: hidden;
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(40, 64, 71, 0.7);
+  z-index: 1;
+`;
+
+const HeroContent = styled.div`
+  max-width: 600px;
+  z-index: 2;
+
+  h1 {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: 58px;
+    font-weight: 800;
+    font-family: ${({ theme }) => theme.typography.fontFamily};
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+
+    span {
+      color: ${({ theme }) => theme.colors.other};
+    }
+  }
+
+  p {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    color: ${({ theme }) => theme.colors.white};
+  }
+`;

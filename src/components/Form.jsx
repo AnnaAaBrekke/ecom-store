@@ -3,6 +3,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SubmitFormButton } from "./Buttons";
+import {
+  FormMessage,
+  FormMessageSuccess,
+  Input,
+  Label,
+  StyledForm,
+  TextArea,
+} from "../styles/Form.style";
+import { FormGroup } from "@mui/material";
 
 const schema = yup.object().shape({
   fullName: yup
@@ -56,31 +65,38 @@ function ContactForm() {
   };
 
   return (
-    <div>
+    <StyledForm>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="fullName">Full Name</label>
-        <input
-          type="text"
-          {...register("fullName")}
-          placeholder="Your full name"
-        />
-        <p style={{ color: "red" }}>{errors.fullName?.message}</p>
-
-        <label htmlFor="email">Email</label>
-        <input type="email" {...register("email")} placeholder="Email" />
-        <p style={{ color: "red" }}>{errors.email?.message}</p>
-
-        <label htmlFor="subject">Subject</label>
-        <input type="text" {...register("subject")} placeholder="Subject" />
-        <p style={{ color: "red" }}>{errors.subject?.message}</p>
-
-        <label htmlFor="body">Body</label>
-        <input type="text" {...register("body")} placeholder="Your message" />
-        <p style={{ color: "red" }}>{errors.body?.message}</p>
+        <FormGroup>
+          <Label htmlFor="fullName">Full Name</Label>
+          <Input
+            type="text"
+            {...register("fullName")}
+            placeholder="Your full name"
+          />
+          <FormMessage>{errors.fullName?.message}</FormMessage>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="email">Email</Label>
+          <Input type="email" {...register("email")} placeholder="Email" />
+          <FormMessage>{errors.email?.message}</FormMessage>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="subject">Subject</Label>
+          <Input type="text" {...register("subject")} placeholder="Subject" />
+          <FormMessage>{errors.subject?.message}</FormMessage>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="body">Message</Label>
+          <TextArea {...register("body")} placeholder="Your message..." />
+          <FormMessage>{errors.body?.message}</FormMessage>
+        </FormGroup>
         <SubmitFormButton isLoading={isLoading} />
       </form>
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-    </div>
+      {successMessage && (
+        <FormMessageSuccess>{successMessage}</FormMessageSuccess>
+      )}
+    </StyledForm>
   );
 }
 

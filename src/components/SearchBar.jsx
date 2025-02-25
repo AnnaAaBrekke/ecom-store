@@ -3,11 +3,8 @@ import TextField from "@mui/material/TextField";
 import { List, ListItem, ListItemButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import "../styles/Searchbar.css";
 import { useNavigate } from "react-router-dom";
-
-// Source: https://salehmubashar.com/blog/create-a-search-bar-in-react-js (TextField)
-// Source: https://www.youtube.com/watch?v=o1XcuaCcsDA (AutoComplete, Filter, Keydown)
+import styled from "styled-components";
 
 const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -16,11 +13,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
-    if (e.target.value.length > 0) {
-      setShowSuggestions(true);
-    } else {
-      setShowSuggestions(false);
-    }
+    setShowSuggestions(e.target.value.length > 0);
   };
 
   const handleSearchClose = () => {
@@ -30,8 +23,8 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setSearchInput(suggestion.title); // Set the title in the input
-    navigate(`/product/${suggestion.id}`); // Navigate to the product page using its ID
+    setSearchInput(suggestion.title);
+    navigate(`/product/${suggestion.id}`);
     setShowSuggestions(false);
   };
 
@@ -46,7 +39,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
         setSelectedSuggestion((prev) => prev + 1);
       } else if (e.key === "Enter" && selectedSuggestion >= 0) {
         const selectedProduct = filteredSuggestions[selectedSuggestion];
-        navigate(`/product/${selectedProduct.id}`); // Navigate to the product page
+        navigate(`/product/${selectedProduct.id}`);
         setShowSuggestions(false);
       }
     }
@@ -57,9 +50,8 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
   );
 
   return (
-    <div>
-      <TextField
-        id="outlined-basic"
+    <SearchContainer>
+      <StyledTextField
         variant="outlined"
         fullWidth
         label="Search"
@@ -70,55 +62,95 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
         onKeyDown={handleKeyDown}
       />
       {searchInput === "" ? (
-        <SearchIcon />
+        <StyledSearchIcon />
       ) : (
-        <CloseIcon onClick={handleSearchClose} />
+        <StyledCloseIcon onClick={handleSearchClose} />
       )}
       {showSuggestions && filteredSuggestions.length > 0 && (
-        <List style={suggestionListStyle}>
+        <SuggestionList>
           {filteredSuggestions.slice(0, 5).map((suggestion, index) => (
-            <ListItem
+            <SuggestionItem
               key={suggestion.id}
-              className={`search-suggestion-line ${
-                selectedSuggestion === index ? "active" : ""
-              }`}
-              disablePadding
+              active={selectedSuggestion === index}
             >
-              <ListItemButton
-                style={suggestionItemStyle}
+              <StyledListItemButton
                 onClick={() => handleSuggestionClick(suggestion)}
               >
                 {suggestion.title}
-              </ListItemButton>
-            </ListItem>
+              </StyledListItemButton>
+            </SuggestionItem>
           ))}
-        </List>
+        </SuggestionList>
       )}
-    </div>
+    </SearchContainer>
   );
 };
 
 export default SearchBar;
 
-// Fix styling later - just for structure purpose
+const SearchContainer = styled.div`
+  position: relative;
+  width: 100%;
+  padding-top: 6px;
+`;
 
-const suggestionListStyle = {
-  top: "100%",
-  left: 0,
-  right: 0,
-  backgroundColor: "#fff",
-  border: "1px solid #ccc",
-  borderTop: "none",
-  borderRadius: "0 0 4px 4px",
-  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-  zIndex: 10,
-  maxHeight: "200px",
-  overflowY: "auto",
-};
+const StyledTextField = styled(TextField)`
+  && {
+    background: ${({ theme }) => theme.colors.background};
+  }
+`;
 
-const suggestionItemStyle = {
-  padding: "8px 16px",
-  fontSize: "14px",
-  cursor: "pointer",
-  color: "#333",
-};
+const StyledSearchIcon = styled(SearchIcon)`
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+const StyledCloseIcon = styled(CloseIcon)`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.error};
+`;
+
+const SuggestionList = styled(List)`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+`;
+
+const SuggestionItem = styled(ListItem)`
+  padding: 0;
+  background-color: ${({ active, theme }) =>
+    active ? theme.colors.other : "inherit"};
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.other};
+  }
+`;
+
+const StyledListItemButton = styled(ListItemButton)`
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.layout};
+  }
+`;

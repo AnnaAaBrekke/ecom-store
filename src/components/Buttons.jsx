@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { ButtonContainer } from "../styles/Product.style";
 
 export const CheckoutButton = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,9 +16,9 @@ export const CheckoutButton = () => {
 
   return (
     <>
-      <button onClick={handleCheckout} disabled={isLoading}>
+      <StyledMainButton onClick={handleCheckout} disabled={isLoading}>
         {isLoading ? "Proccessing..." : "Checkout"}
-      </button>
+      </StyledMainButton>
       <Link to="/checkoutSuccess" id="checkout-link" />
     </>
   );
@@ -24,10 +26,27 @@ export const CheckoutButton = () => {
 
 export const SubmitFormButton = ({ isLoading }) => {
   return (
-    <>
-      <button type="submit" disabled={isLoading}>
+    <ButtonContainer>
+      <StyledMainButton type="submit" disabled={isLoading}>
         {isLoading ? "Sending..." : "Submit Message"}
-      </button>
-    </>
+      </StyledMainButton>
+    </ButtonContainer>
   );
 };
+
+export const StyledMainButton = styled.button`
+  display: flex;
+  align-items: right;
+  gap: 10px;
+  background: ${({ theme }) => theme.colors.primary};
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 12px 18px;
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
+  cursor: pointer;
+  transition: 0.3s;
+  justify-content: flex-end;
+  margin-bottom: 6px;
+`;

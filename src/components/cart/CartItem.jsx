@@ -1,72 +1,116 @@
-// components/CartItem.js
 import React from "react";
 import QuantityCounter from "./Quantity";
+import styled from "styled-components";
+import {
+  Card,
+  CardBody,
+  ProductImage,
+  PriceContainer,
+  Price,
+  OriginalPrice,
+  DiscountTag,
+  Title,
+} from "../../styles/Product.style";
 
 const CartItem = ({
   item,
   increaseQuantity,
   decreaseQuantity,
   removeFromCart,
+  isSidebar,
 }) => {
   return (
-    <li
-      style={{
-        borderBottom: "1px solid #ddd",
-        padding: "10px 0",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <img
-          src={item.image?.url || "/placeholder.jpg"}
-          alt={item.image?.alt || item.title}
-          style={{
-            width: "50px",
-            height: "auto",
-            marginRight: "10px",
-            borderRadius: "5px",
-          }}
+    <StyledCartItem isSidebar={isSidebar}>
+      <ProductImage
+        src={item.image?.url || "/placeholder.jpg"}
+        alt={item.image?.alt || item.title}
+      />
+      <CardBody>
+        <Title>{item.title}</Title>
+        <QuantityCounter
+          quantity={item.quantity}
+          onIncrease={() => increaseQuantity(item.id)}
+          onDecrease={() => decreaseQuantity(item.id)}
         />
-        <div>
-          <h4 style={{ margin: "0 0 5px", color: "black" }}>{item.title}</h4>
-          <QuantityCounter
-            quantity={item.quantity}
-            onIncrease={() => increaseQuantity(item.id)}
-            onDecrease={() => decreaseQuantity(item.id)}
-          />
-        </div>
-      </div>
-      <p style={{ marginTop: "5px", color: "black" }}>
-        Price:{" "}
-        <strong>
-          {(
-            Math.round(item.discountedPrice * item.quantity * 100) / 100
-          ).toFixed(2)}
-          kr
-        </strong>
-      </p>
-      {item.price > item.discountedPrice && (
-        <p style={{ color: "red", textDecoration: "line-through" }}>
-          Original Price:{" "}
-          {(Math.round(item.price * item.quantity * 100) / 100).toFixed(2)}
-          kr
-        </p>
-      )}
-      <button
-        onClick={() => removeFromCart(item.id)}
-        style={{
-          color: "red",
-          cursor: "pointer",
-          border: "none",
-          background: "none",
-          textAlign: "left",
-        }}
-      >
-        Remove
-      </button>
-    </li>
+        <PriceContainer>
+          <Price>
+            {(
+              Math.round(item.discountedPrice * item.quantity * 100) / 100
+            ).toFixed(2)}
+            kr
+          </Price>
+          {item.price > item.discountedPrice && (
+            <>
+              <OriginalPrice>
+                {(Math.round(item.price * item.quantity * 100) / 100).toFixed(
+                  2
+                )}
+                kr
+              </OriginalPrice>
+              <DiscountTag>
+                {Math.round(
+                  ((item.price - item.discountedPrice) / item.price) * 100
+                )}
+                % off
+              </DiscountTag>
+            </>
+          )}
+        </PriceContainer>
+        <RemoveButton onClick={() => removeFromCart(item.id)}>
+          Remove
+        </RemoveButton>
+      </CardBody>
+    </StyledCartItem>
   );
 };
 
 export default CartItem;
+
+export const StyledCartItem = styled(Card)`
+  display: flex;
+  flex-direction: ${({ isSidebar }) => (isSidebar ? "column" : "row")};
+  text-align: left;
+  align-items: ${({ isSidebar }) => (isSidebar ? "center" : "left")};
+  justify-content: ${({ isSidebar }) =>
+    isSidebar ? "center" : "space-between"};
+  padding: 12px;
+  width: ${({ isSidebar }) => (isSidebar ? "80%" : "65vh")};
+  height: auto;
+  margin: 1rem;
+  margin-bottom: 1rem;
+  min-width: auto;
+  overflow: hidden;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: ${({ isSidebar }) => (isSidebar ? "80%" : "80%")};
+  }
+`;
+
+const RemoveButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: ${({ theme }) => theme.colors.grayLight};
+  color: ${({ theme }) => theme.colors.darkGray};
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: ${({ theme }) => theme.shadows.soft};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.error};
+    color: white;
+  }
+
+  &:active {
+    transform: none;
+  }
+`;
