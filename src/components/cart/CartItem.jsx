@@ -85,7 +85,7 @@ export const StyledCartItem = styled(Card)`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: ${({ isSidebar }) => (isSidebar ? "80%" : "80%")};
+    width: ${({ isSidebar }) => (isSidebar ? "80%" : "100%")};
   }
 `;
 
