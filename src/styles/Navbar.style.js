@@ -53,13 +53,11 @@ export const NavLinkStyled = styled(Link)`
   font-size: 20px;
   font-family: ${({ theme }) => theme.typography.fontFamily};
   padding: 8px 12px;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.other};
-
-    color: #4a4a4a;
   }
 `;
 

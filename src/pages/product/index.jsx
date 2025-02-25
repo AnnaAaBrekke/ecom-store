@@ -41,9 +41,11 @@ const ProductPage = () => {
           {loading ? (
             <CircularProgress size={30} paddingRight={5} color="inherit" />
           ) : (
-            <StyledAddToCartIcon />
+            <>
+              <StyledAddToCartIcon />
+              <AddToCartText>Add to Cart</AddToCartText>
+            </>
           )}
-          Add to Cart
         </AddToCartButton>
       </ProductInfo>
     </ProductContainer>
@@ -76,7 +78,6 @@ const ProductInfo = styled.div`
   padding-right: 1rem;
   margin: 0 0 0 1rem;
 `;
-
 export const AddToCartButton = styled.button`
   width: 100%;
   margin-top: auto;
@@ -95,12 +96,26 @@ export const AddToCartButton = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.colors.primaryDark};
   }
+
+  @media (max-width: 500px) {
+    padding: 0.5rem;
+  }
+`;
+
+const AddToCartText = styled.span`
+  @media (max-width: 500px) {
+    display: none; /* Hides text on small screens */
+  }
 `;
 
 const Description = styled.div`
   h3 {
     font-size: 28px;
     margin-bottom: 0.75rem;
+
+    @media (max-width: 500px) {
+      font-size: 20px;
+    }
   }
 
   p {
@@ -108,9 +123,12 @@ const Description = styled.div`
     color: ${({ theme }) => theme.colors.textSecondary};
     line-height: 1.5;
     margin-bottom: 2rem;
+
+    @media (max-width: 500px) {
+      font-size: 16px;
+    }
   }
 `;
-
 const StyledAddToCartIcon = styled(AddShoppingCartIcon)`
   background: ${({ theme }) => theme.colors.primary};
   color: #fff;

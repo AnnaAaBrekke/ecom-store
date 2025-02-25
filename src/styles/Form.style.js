@@ -53,3 +53,23 @@ export const TextArea = styled.textarea`
     box-shadow: 0 0 8px ${({ theme }) => theme.colors.primaryLight};
   }
 `;
+
+export const FormMessage = styled.p`
+  font-size: 18px;
+  color: ${({ theme }) => theme.colors.error};
+`;
+
+export const FormMessageSuccess = styled.p`
+  font-size: 24px;
+  color: ${({ theme }) => theme.colors.success};
+  text-align: center;
+  font-weight: bold;
+  background: white;
+  border: 1px solid ${({ theme }) => theme.colors.success};
+  display: inline-block;
+  width: fit-content;
+  margin: 10px auto;
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
+  padding: 12px 20px;
+  border-radius: ${({ theme }) => theme.borderRadius};
+`;

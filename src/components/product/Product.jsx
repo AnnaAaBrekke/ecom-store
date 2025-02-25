@@ -19,7 +19,12 @@ import { renderRating } from "../../utils/renderRating";
 const Product = ({ product, showViewButton = true }) => {
   if (!product) return null;
 
-  const discount = product.price > product.discountedPrice ? Math.round() : 0;
+  const discount =
+    product.price > product.discountedPrice
+      ? Math.round(
+          ((product.price - product.discountedPrice) / product.price) * 100
+        )
+      : 0;
 
   return (
     <Card>

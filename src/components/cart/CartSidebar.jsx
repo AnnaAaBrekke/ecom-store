@@ -81,13 +81,14 @@ const CartToggleButton = styled.button`
   top: 80px;
   right: ${({ isCartOpen }) => (isCartOpen ? "280px" : "20px")};
   background: ${({ theme }) => theme.gradients.primaryGradient};
-  border-radius: 50%;
+  :50% ;
   border: none;
   padding: 8px;
   cursor: pointer;
   transition: right 0.3s ease-in-out;
   box-shadow: ${({ theme }) => theme.shadows.strong};
   z-index: 1100;
+  border-radius: 50%;
 
   &:hover {
     background: ${({ theme }) => theme.colors.accentLight};

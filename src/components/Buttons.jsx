@@ -48,8 +48,5 @@ export const StyledMainButton = styled.button`
   cursor: pointer;
   transition: 0.3s;
   justify-content: flex-end;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.success};
-  }
+  margin-bottom: 6px;
 `;

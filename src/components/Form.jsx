@@ -3,7 +3,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SubmitFormButton } from "./Buttons";
-import { Input, Label, StyledForm, TextArea } from "../styles/Form.style";
+import {
+  FormMessage,
+  FormMessageSuccess,
+  Input,
+  Label,
+  StyledForm,
+  TextArea,
+} from "../styles/Form.style";
 import { FormGroup } from "@mui/material";
 
 const schema = yup.object().shape({
@@ -67,27 +74,28 @@ function ContactForm() {
             {...register("fullName")}
             placeholder="Your full name"
           />
-          <p style={{ color: "red" }}>{errors.fullName?.message}</p>
+          <FormMessage>{errors.fullName?.message}</FormMessage>
         </FormGroup>
         <FormGroup>
           <Label htmlFor="email">Email</Label>
           <Input type="email" {...register("email")} placeholder="Email" />
-          <p style={{ color: "red" }}>{errors.email?.message}</p>
+          <FormMessage>{errors.email?.message}</FormMessage>
         </FormGroup>
         <FormGroup>
           <Label htmlFor="subject">Subject</Label>
           <Input type="text" {...register("subject")} placeholder="Subject" />
-          <p style={{ color: "red" }}>{errors.subject?.message}</p>
+          <FormMessage>{errors.subject?.message}</FormMessage>
         </FormGroup>
         <FormGroup>
           <Label htmlFor="body">Message</Label>
           <TextArea {...register("body")} placeholder="Your message..." />
-
-          <p style={{ color: "red" }}>{errors.body?.message}</p>
+          <FormMessage>{errors.body?.message}</FormMessage>
         </FormGroup>
         <SubmitFormButton isLoading={isLoading} />
       </form>
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+      {successMessage && (
+        <FormMessageSuccess>{successMessage}</FormMessageSuccess>
+      )}
     </StyledForm>
   );
 }

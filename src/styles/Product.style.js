@@ -15,7 +15,7 @@ export const GridContainer = styled.div`
 export const Message = styled.div`
   text-align: center;
   font-size: 1.2rem;
-  color: #555;
+  color: ${({ theme }) => theme.colors.text};
   margin-top: 20px;
 `;
 
@@ -27,6 +27,8 @@ export const Card = styled.div`
   transition: transform 0.3s ease;
   height: auto;
   width: 90%;
+  min-width: 250px;
+
   box-shadow: ${({ theme }) => theme.shadows.soft};
   overflow: hidden;
   margin: 0 auto;
@@ -90,7 +92,7 @@ export const DiscountTag = styled.span`
   font-size: 0.9rem;
   font-weight: bold;
   padding: 3px 8px;
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
   display: inline-block;
   text-transform: uppercase;
 `;
@@ -112,9 +114,9 @@ export const Tag = styled.span`
   background-color: ${({ theme }) => theme.colors.accent};
   color: ${({ theme }) => theme.colors.secondary};
   padding: 4px 8px;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.borderRadiusSecondary};
   font-size: 0.8rem;
-  margin-bottom: 16px;
+  margin-bottom: 16px;a
 `;
 
 export const ButtonContainer = styled.div`

@@ -76,7 +76,17 @@ export const StyledCartItem = styled(Card)`
   padding: 12px;
   width: ${({ isSidebar }) => (isSidebar ? "80%" : "65vh")};
   height: auto;
+  margin: 1rem;
   margin-bottom: 1rem;
+  min-width: auto;
+  overflow: hidden;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: ${({ isSidebar }) => (isSidebar ? "80%" : "80%")};
+  }
 `;
 
 const RemoveButton = styled.button`
@@ -89,7 +99,7 @@ const RemoveButton = styled.button`
   font-size: 0.8rem;
   font-weight: 500;
   padding: 4px 10px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: ${({ theme }) => theme.borderRadiusSecondary};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -101,6 +111,6 @@ const RemoveButton = styled.button`
   }
 
   &:active {
-    transform: none; /* No scale effect */
+    transform: none;
   }
 `;
