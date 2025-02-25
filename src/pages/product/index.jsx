@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product, Reviews } from "../../components/product";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import useCart from "../../stores/cartStore";
 import useProduct from "../../api/product";
 import styled from "styled-components";
+import { CircularProgress } from "@mui/material";
 
 const ProductPage = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
   const addToCart = useCart((state) => state.addToCart);
   const { data: product = {}, isLoading, isError } = useProduct(id);
 
@@ -18,8 +20,12 @@ const ProductPage = () => {
     return <div>Product not found.</div>;
 
   const handleAddToCart = () => {
-    addToCart(product);
-    alert(`${product.title} has been added to the cart`);
+    setLoading(true);
+    setTimeout(() => {
+      addToCart(product);
+      setLoading(false);
+      alert(`${product.title} has been added to the cart`);
+    }, 1000);
   };
 
   return (
@@ -31,8 +37,12 @@ const ProductPage = () => {
           <p>{product.description}</p>
         </Description>
         <Reviews reviews={product.reviews} />
-        <AddToCartButton onClick={handleAddToCart}>
-          <AddShoppingCartIcon style={{ fontSize: 30, color: "#fff" }} />
+        <AddToCartButton onClick={handleAddToCart} disabled={loading}>
+          {loading ? (
+            <CircularProgress size={30} paddingRight={5} color="inherit" />
+          ) : (
+            <StyledAddToCartIcon />
+          )}
           Add to Cart
         </AddToCartButton>
       </ProductInfo>
@@ -99,4 +109,11 @@ const Description = styled.div`
     line-height: 1.5;
     margin-bottom: 2rem;
   }
+`;
+
+const StyledAddToCartIcon = styled(AddShoppingCartIcon)`
+  background: ${({ theme }) => theme.colors.primary};
+  color: #fff;
+  font-size: 30px;
+  padding-right: 8px;
 `;
