@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 export const NavbarContainer = styled.nav`
   display: flex;
@@ -75,4 +76,35 @@ export const BackToShopLink = styled(Link)`
     background: ${({ theme }) => theme.colors.primaryDark};
     transform: scale(1.05);
   }
+`;
+
+// CartIcon
+
+export const StyledCartItemContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+export const CartIconButton = styled.button`
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+`;
+
+export const CartIconCounter = styled.span`
+  position: absolute;
+  background: rgb(242, 198, 20);
+  color: white;
+  bottom: 20px;
+  right: -5px;
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+`;
+
+export const StyledShoppingCartIcon = styled(ShoppingCartIcon)`
+  font-size: 30px !important;
+  color: ${({ theme }) => theme.colors.primary};
 `;
