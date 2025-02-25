@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { ButtonContainer } from "../styles/Product.style";
 
 export const CheckoutButton = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,11 +26,11 @@ export const CheckoutButton = () => {
 
 export const SubmitFormButton = ({ isLoading }) => {
   return (
-    <>
+    <ButtonContainer>
       <StyledMainButton type="submit" disabled={isLoading}>
         {isLoading ? "Sending..." : "Submit Message"}
       </StyledMainButton>
-    </>
+    </ButtonContainer>
   );
 };
 
@@ -41,7 +42,7 @@ export const StyledMainButton = styled.button`
   color: white;
   font-size: 1rem;
   font-weight: bold;
-  padding: 12px 16px;
+  padding: 12px 18px;
   border: none;
   border-radius: ${({ theme }) => theme.borderRadiusSecondary};
   cursor: pointer;

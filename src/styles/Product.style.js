@@ -117,9 +117,14 @@ export const Tag = styled.span`
   margin-bottom: 16px;
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const ViewButton = styled(Link)`
-  padding: 10px;
-  width: 210px;
+  width: auto;
+  padding: 12px 18px;
   background: ${({ theme }) => theme.gradients.primaryGradient};
   color: ${({ theme }) => theme.colors.white};
   text-align: center;

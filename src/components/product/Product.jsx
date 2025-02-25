@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  ButtonContainer,
   Card,
   CardBody,
   DiscountTag,
@@ -18,11 +19,7 @@ import { renderRating } from "../../utils/renderRating";
 const Product = ({ product, showViewButton = true }) => {
   if (!product) return null;
 
-  const discount =
-    product.price > product.discountedPrice
-      ? Math.round(
-        )
-      : 0;
+  const discount = product.price > product.discountedPrice ? Math.round() : 0;
 
   return (
     <Card>
@@ -52,7 +49,9 @@ const Product = ({ product, showViewButton = true }) => {
           ))}
         </Tags>
         {showViewButton && (
-          <ViewButton to={`/product/${product.id}`}>View Product</ViewButton>
+          <ButtonContainer>
+            <ViewButton to={`/product/${product.id}`}>View Product</ViewButton>
+          </ButtonContainer>
         )}
       </CardBody>
     </Card>
