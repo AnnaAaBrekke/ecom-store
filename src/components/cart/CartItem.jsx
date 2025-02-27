@@ -74,7 +74,7 @@ export const StyledCartItem = styled(Card)`
   justify-content: ${({ $isSidebar }) =>
     $isSidebar ? "center" : "space-between"};
   padding: 12px;
-  width: ${({ $isSidebar }) => ($isSidebar ? "80%" : "65vh")};
+  width: ${({ $isSidebar }) => ($isSidebar ? "80%" : "90%")};
   height: auto;
   margin: 1rem;
   margin-bottom: 1rem;
