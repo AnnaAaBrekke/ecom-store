@@ -20,7 +20,7 @@ const CartItem = ({
   isSidebar,
 }) => {
   return (
-    <StyledCartItem isSidebar={isSidebar}>
+    <StyledCartItem $isSidebar={isSidebar}>
       <ProductImage
         src={item.image?.url || "/placeholder.jpg"}
         alt={item.image?.alt || item.title}
@@ -68,13 +68,13 @@ export default CartItem;
 
 export const StyledCartItem = styled(Card)`
   display: flex;
-  flex-direction: ${({ isSidebar }) => (isSidebar ? "column" : "row")};
+  flex-direction: ${({ $isSidebar }) => ($isSidebar ? "column" : "row")};
   text-align: left;
-  align-items: ${({ isSidebar }) => (isSidebar ? "center" : "left")};
-  justify-content: ${({ isSidebar }) =>
-    isSidebar ? "center" : "space-between"};
+  align-items: ${({ $isSidebar }) => ($isSidebar ? "center" : "left")};
+  justify-content: ${({ $isSidebar }) =>
+    $isSidebar ? "center" : "space-between"};
   padding: 12px;
-  width: ${({ isSidebar }) => (isSidebar ? "80%" : "65vh")};
+  width: ${({ $isSidebar }) => ($isSidebar ? "80%" : "65vh")};
   height: auto;
   margin: 1rem;
   margin-bottom: 1rem;
@@ -85,7 +85,7 @@ export const StyledCartItem = styled(Card)`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: ${({ isSidebar }) => (isSidebar ? "80%" : "100%")};
+    width: ${({ $isSidebar }) => ($isSidebar ? "80%" : "100%")};
   }
 `;
 

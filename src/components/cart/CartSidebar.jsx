@@ -31,14 +31,14 @@ const CartSidebar = () => {
     <>
       {/* Toggle Button (Only show if cart is not empty and NOT on checkout) */}
       {cart.length > 0 && !isCheckoutPage && (
-        <CartToggleButton onClick={toggleCart} isCartOpen={isCartOpen}>
+        <CartToggleButton onClick={toggleCart} $isCartOpen={isCartOpen}>
           <KeyboardArrowLeft style={{ fontSize: 24 }} />
         </CartToggleButton>
       )}
 
       {/* Sidebar (Only show if cart is not empty and NOT on checkout) */}
       {cart.length > 0 && !isCheckoutPage && (
-        <SidebarContainer isCartOpen={isCartOpen}>
+        <SidebarContainer $isCartOpen={isCartOpen}>
           {/* Close Button */}
           <CloseButton onClick={toggleCart}>
             <Close />
@@ -79,7 +79,7 @@ export default CartSidebar;
 const CartToggleButton = styled.button`
   position: fixed;
   top: 80px;
-  right: ${({ isCartOpen }) => (isCartOpen ? "280px" : "20px")};
+  right: ${({ $isCartOpen }) => ($isCartOpen ? "280px" : "20px")};
   background: ${({ theme }) => theme.gradients.primaryGradient};
   :50% ;
   border: none;
@@ -103,7 +103,7 @@ const CartToggleButton = styled.button`
 const SidebarContainer = styled.div`
   position: fixed;
   top: 0;
-  right: ${({ isCartOpen }) => (isCartOpen ? "0" : "-320px")};
+  right: ${({ $isCartOpen }) => ($isCartOpen ? "0" : "-320px")};
   width: 250px;
   height: 100vh;
   background: ${({ theme }) => theme.colors.white};

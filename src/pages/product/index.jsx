@@ -21,8 +21,8 @@ const ProductPage = () => {
 
   const handleAddToCart = () => {
     setLoading(true);
+    addToCart(product); // Directly add product before timeout
     setTimeout(() => {
-      addToCart(product);
       setLoading(false);
       alert(`${product.title} has been added to the cart`);
     }, 1000);

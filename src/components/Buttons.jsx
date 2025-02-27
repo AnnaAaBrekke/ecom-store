@@ -11,7 +11,7 @@ export const CheckoutButton = () => {
     setIsLoading(true);
     setTimeout(() => {
       document.getElementById("checkout-link").click();
-    }, 1000);
+    }, 2000);
   };
 
   return (
