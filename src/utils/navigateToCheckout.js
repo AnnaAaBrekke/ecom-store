@@ -4,5 +4,5 @@ export const navigateToCheckout = (setLoading, navigate) => {
   setTimeout(() => {
     navigate("/checkout");
     setLoading(false);
-  }, 800);
+  }, 2000);
 };

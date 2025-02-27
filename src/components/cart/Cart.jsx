@@ -56,7 +56,7 @@ const StyledCartList = styled.div`
   gap: 1rem;
   background: ${({ theme }) => theme.colors.background};
   padding: 20px;
-  margin: 2rem auto; /* Centers the cart */
+  margin: 2rem auto; 
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: ${({ theme }) => theme.shadows.soft};
 `;

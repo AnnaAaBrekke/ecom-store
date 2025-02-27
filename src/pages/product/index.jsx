@@ -21,8 +21,8 @@ const ProductPage = () => {
 
   const handleAddToCart = () => {
     setLoading(true);
+    addToCart(product);
     setTimeout(() => {
-      addToCart(product);
       setLoading(false);
       alert(`${product.title} has been added to the cart`);
     }, 1000);
@@ -39,7 +39,7 @@ const ProductPage = () => {
         <Reviews reviews={product.reviews} />
         <AddToCartButton onClick={handleAddToCart} disabled={loading}>
           {loading ? (
-            <CircularProgress size={30} paddingRight={5} color="inherit" />
+            <CircularProgress size={30} color="inherit" />
           ) : (
             <>
               <StyledAddToCartIcon />

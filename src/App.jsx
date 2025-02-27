@@ -1,4 +1,3 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Checkout from "./pages/checkout";
 import Contact from "./pages/contact";
