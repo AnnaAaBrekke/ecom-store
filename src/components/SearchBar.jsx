@@ -71,7 +71,7 @@ const SearchBar = ({ searchInput, setSearchInput, suggestions }) => {
           {filteredSuggestions.slice(0, 5).map((suggestion, index) => (
             <SuggestionItem
               key={suggestion.id}
-              active={selectedSuggestion === index}
+              active={selectedSuggestion === index ? "true" : undefined}
             >
               <StyledListItemButton
                 onClick={() => handleSuggestionClick(suggestion)}
