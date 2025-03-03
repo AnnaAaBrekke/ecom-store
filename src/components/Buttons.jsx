@@ -17,7 +17,7 @@ export const CheckoutButton = () => {
   return (
     <>
       <StyledMainButton onClick={handleCheckout} disabled={isLoading}>
-        {isLoading ? "Proccessing..." : "Checkout"}
+        {isLoading ? "Processing..." : "Checkout"}
       </StyledMainButton>
       <Link to="/checkoutSuccess" id="checkout-link" />
     </>

@@ -10,14 +10,12 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Home />} /> {/* Home Page */}
+        <Route path="/" element={<Home />} />
         <Route path="product/:id" element={<ProductPage />} />
-        <Route path="/contact" element={<Contact />} /> {/* Contact Page */}
-        <Route path="/checkout" element={<Checkout />} /> {/* Checkout Page */}
-        <Route path="/checkoutSuccess" element={<CheckoutSuccessPage />} />{" "}
-        {/* Checkout Success Page */}
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} />{" "}
-        {/* 404 Page */}
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkoutSuccess" element={<CheckoutSuccessPage />} />
+        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </Layout>
   );
