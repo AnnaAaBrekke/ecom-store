@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   ButtonContainer,
   Card,
@@ -19,12 +19,13 @@ import { renderRating } from "../../utils/renderRating";
 const Product = ({ product, showViewButton = true }) => {
   if (!product) return null;
 
-  const discount =
-    product.price > product.discountedPrice
+  const discount = useMemo(() => {
+    return product.price > product.discountedPrice
       ? Math.round(
           ((product.price - product.discountedPrice) / product.price) * 100
         )
       : 0;
+  }, [product.price, product.discountedPrice]);
 
   return (
     <Card>
