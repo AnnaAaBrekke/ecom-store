@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { ButtonContainer } from "../styles/Product.style";
+import { ButtonContainer } from "../../styles/Product.style";
 
 export const CheckoutButton = () => {
   const [isLoading, setIsLoading] = useState(false);

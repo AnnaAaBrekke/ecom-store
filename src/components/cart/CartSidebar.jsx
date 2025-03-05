@@ -6,7 +6,7 @@ import { calculateTotal } from "../../utils/calculateTotal";
 import { CircularProgress } from "@mui/material";
 import CartItem from "./CartItem";
 import { navigateToCheckout } from "../../utils/navigateToCheckout";
-import { StyledMainButton } from "../Buttons";
+import { StyledMainButton } from "../buttons/Buttons";
 import { TotalContainer } from "./Cart";
 import styled from "styled-components";
 import { SubHeader } from "../../styles/Typography.style";
