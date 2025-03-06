@@ -15,9 +15,9 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { theme } from "./styles/theme";
-import { expect, test } from "vitest";
+import { expect, it } from "vitest";
 
-test("App component should match snapshot", () => {
+it("App component should match snapshot", () => {
   const tree = renderer
     .create(
       <ThemeProvider theme={theme}>
