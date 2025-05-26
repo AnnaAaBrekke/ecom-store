@@ -1,3 +1,19 @@
+/**
+ * CartSidebar Component
+ *
+ * Provides a slide-out sidebar that displays the shopping cart contents.
+ *
+ * Features:
+ * - Toggle open/close of the sidebar.
+ * - Display cart items using the CartItem component.
+ * - Show total amount and a checkout button.
+ * - Uses Zustand (useCart) store for cart state.
+ * - Uses styled-components for layout and design.
+ * - Handles navigation to checkout on button click.
+ *
+ * @returns {JSX.Element} A sidebar view of the cart or nothing if the cart is empty or on checkout page.
+ */
+
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../stores/cartStore";

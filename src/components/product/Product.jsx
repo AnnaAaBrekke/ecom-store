@@ -1,3 +1,21 @@
+/**
+ * Product Component
+ *
+ * Displays an individual product card with image, title, rating, price, discount, tags, and an optional view button.
+ *
+ * Features:
+ * - Calculates and shows discount percentage if applicable.
+ * - Renders product image, title, rating (with stars), and price details.
+ * - Displays product tags as a list.
+ * - Optionally shows a "View Product" button linking to the product’s detail page.
+ *
+ * Props:
+ * @param {Object} product - Product data object (including title, image, price, discountedPrice, rating, tags, id).
+ * @param {boolean} showViewButton - Whether to display the "View Product" button (default: true).
+ *
+ * @returns {JSX.Element|null} The styled product card component or null if no product is provided.
+ */
+
 import React, { useMemo } from "react";
 import {
   ButtonContainer,

@@ -1,3 +1,18 @@
+/**
+ * Button Components
+ *
+ * Contains reusable button components for checkout and form submission.
+ *
+ * Components:
+ * - CheckoutButton:
+ *   Triggers a checkout action with a loading state and redirects to the checkout success page.
+ *
+ * - SubmitFormButton:
+ *   Displays a submit button for forms, showing a loading state while submission is in progress.
+ *
+ * @returns {JSX.Element} The respective button elements with loading states.
+ */
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";

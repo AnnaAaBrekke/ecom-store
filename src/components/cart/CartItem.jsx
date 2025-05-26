@@ -1,3 +1,24 @@
+/**
+ * CartItem Component
+ *
+ * Displays a single item inside the shopping cart or sidebar.
+ *
+ * Features:
+ * - Shows product image, title, price, and discount.
+ * - Provides quantity controls using the QuantityCounter component.
+ * - Includes a remove button to delete the item from the cart.
+ * - Adapts layout depending on whether it’s shown inside the sidebar or main cart.
+ *
+ * Props:
+ * @param {object} item - The product item object containing details like title, price, image, quantity.
+ * @param {function} increaseQuantity - Function to increase item quantity in the cart.
+ * @param {function} decreaseQuantity - Function to decrease item quantity in the cart.
+ * @param {function} removeFromCart - Function to remove the item from the cart.
+ * @param {boolean} isSidebar - Flag to adjust styling when used in the sidebar view.
+ *
+ * @returns {JSX.Element} A styled cart item display.
+ */
+
 import React from "react";
 import QuantityCounter from "./Quantity";
 import styled from "styled-components";

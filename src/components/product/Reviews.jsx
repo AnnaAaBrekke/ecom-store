@@ -1,3 +1,18 @@
+/**
+ * Reviews Component
+ *
+ * Displays a list of user reviews for a product, including username, description, and rating.
+ *
+ * Features:
+ * - If no reviews are provided, displays a fallback message.
+ * - Renders each review with a user icon, name, description, and star rating.
+ *
+ * Props:
+ * @param {Array} reviews - Array of review objects, each containing id, username, description, and rating.
+ *
+ * @returns {JSX.Element} A styled list of reviews or a message indicating no reviews are available.
+ */
+
 import React from "react";
 import { Rating } from "../../styles/Product.style";
 import { renderRating } from "../../utils/renderRating";
