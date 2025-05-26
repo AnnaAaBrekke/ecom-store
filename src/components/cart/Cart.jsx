@@ -3,7 +3,7 @@ import useCart from "../../stores/cartStore";
 import { calculateTotal } from "../../utils/calculateTotal";
 import CartItem from "./CartItem";
 import styled from "styled-components";
-import { CheckoutButton } from "../Buttons";
+import { CheckoutButton } from "../buttons/Buttons";
 import { Paragraph } from "../../styles/Typography.style";
 import { BackToShopLink } from "../../styles/Navbar.style";
 
@@ -56,7 +56,7 @@ const StyledCartList = styled.div`
   gap: 1rem;
   background: ${({ theme }) => theme.colors.background};
   padding: 20px;
-  margin: 2rem auto; 
+  margin: 2rem auto;
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: ${({ theme }) => theme.shadows.soft};
 `;
