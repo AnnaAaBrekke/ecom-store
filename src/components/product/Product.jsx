@@ -17,15 +17,22 @@ import {
 import { renderRating } from "../../utils/renderRating";
 
 const Product = ({ product, showViewButton = true }) => {
-  if (!product) return null;
-
   const discount = useMemo(() => {
+    if (
+      !product ||
+      product.price === undefined ||
+      product.discountedPrice === undefined
+    ) {
+      return 0;
+    }
     return product.price > product.discountedPrice
       ? Math.round(
           ((product.price - product.discountedPrice) / product.price) * 100
         )
       : 0;
-  }, [product.price, product.discountedPrice]);
+  }, [product?.price, product?.discountedPrice]);
+
+  if (!product) return null;
 
   return (
     <Card>
