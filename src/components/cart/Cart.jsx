@@ -1,3 +1,18 @@
+/**
+ * Cart Component
+ *
+ * Displays the current shopping cart contents, including a list of items, total amount,
+ * and a checkout button. If the cart is empty, shows a message with a link to return to the shop.
+ *
+ * Features:
+ * - Uses Zustand store (useCart) to manage cart state and actions.
+ * - Calculates total price using the calculateTotal utility.
+ * - Renders CartItem components for each item in the cart.
+ * - Styled using styled-components for a responsive and clean layout.
+ *
+ * @returns {JSX.Element} The cart view, either showing cart items or an empty message.
+ */
+
 import React from "react";
 import useCart from "../../stores/cartStore";
 import { calculateTotal } from "../../utils/calculateTotal";
@@ -17,7 +32,7 @@ const Cart = () => {
     return (
       <StyledEmptyContainer>
         <Paragraph> Your cart is empty.</Paragraph>
-        <br></br>
+        <br />
         <BackToShopLink to="/">Go Back To Shopping</BackToShopLink>
       </StyledEmptyContainer>
     );

@@ -1,3 +1,22 @@
+/**
+ * Products Component
+ *
+ * Displays a list of products fetched from the API, filtered by the search input.
+ *
+ * Features:
+ * - Fetches product data using the useFetch custom hook.
+ * - Filters products by search term (case-insensitive).
+ * - Updates parent suggestions list for autocomplete.
+ * - Shows loading and error messages when appropriate.
+ * - Renders up to 12 filtered Product components.
+ *
+ * Props:
+ * @param {string} searchInput - The current search text input.
+ * @param {function} setSuggestions - Function to update autocomplete suggestions.
+ *
+ * @returns {JSX.Element} A grid of Product components or relevant messages.
+ */
+
 import React, { useEffect } from "react";
 import useFetch from "./apiBase";
 import { Product } from "../components/product";

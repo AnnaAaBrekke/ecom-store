@@ -1,3 +1,22 @@
+/**
+ * ContactForm Component
+ *
+ * A contact form that collects user input and validates it using React Hook Form and Yup.
+ *
+ * Features:
+ * - Validates inputs: full name, email, subject, and message body.
+ * - Displays real-time error messages for validation issues.
+ * - Shows a success message after form submission.
+ * - Simulates form submission with a loading state and a fake delay.
+ *
+ * Dependencies:
+ * - React Hook Form for form management.
+ * - Yup for schema validation.
+ * - MUI components for layout.
+ *
+ * @returns {JSX.Element} A styled contact form with validation and success feedback.
+ */
+
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

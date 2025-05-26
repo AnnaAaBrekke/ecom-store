@@ -1,4 +1,22 @@
-// Source: https://javascript.plainenglish.io/dry-principle-in-reactjs-7d7cfb236459
+/**
+ * Custom React hook for fetching data from a given API endpoint.
+ * 
+ * Features:
+ * - Automatically handles loading and error states.
+ * - Fetches data from `${API_BASE_URL}${endpoint}`.
+ * - Returns an object containing:
+ *    - data: the fetched data array.
+ *    - isLoading: boolean flag for loading state.
+ *    - isError: boolean flag for error state.
+ * 
+ * Usage:
+ * const { data, isLoading, isError } = useFetch('/products');
+ * 
+ * @param {string} endpoint - API endpoint to fetch from.
+ * @returns {{ data: Array, isLoading: boolean, isError: boolean }}
+ * 
+ * Source: https://javascript.plainenglish.io/dry-principle-in-reactjs-7d7cfb236459
+ */
 
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "../constants";

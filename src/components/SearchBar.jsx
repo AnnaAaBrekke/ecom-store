@@ -1,3 +1,22 @@
+/**
+ * SearchBar Component
+ *
+ * Provides a search input with autocomplete suggestions for products.
+ *
+ * Features:
+ * - Displays a search input using MUI TextField.
+ * - Shows filtered product suggestions below the input as the user types.
+ * - Allows navigation to a product page by clicking or using keyboard navigation (arrow keys + enter).
+ * - Includes clear/reset button when input is not empty.
+ *
+ * Props:
+ * @param {string} searchInput - Current text entered by the user.
+ * @param {function} setSearchInput - Function to update the search input state.
+ * @param {Array} suggestions - List of all available product suggestions (with id and title).
+ *
+ * @returns {JSX.Element} A styled search bar with interactive autocomplete suggestions.
+ */
+
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { List, ListItem, ListItemButton } from "@mui/material";
