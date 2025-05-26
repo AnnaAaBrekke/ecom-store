@@ -2,9 +2,11 @@
 
 This is an eCommerce store built using **React, Vite, Zustand, React Hook Form, MUI, and Styled Components**. It fetches product data from the **API** and allows users to browse products, add items to the cart, and complete a checkout process.
 
+<img width="1356" alt="HomePage" src="https://github.com/user-attachments/assets/d60704aa-6517-4abf-a6d5-bfd1404db07e" />
+
 ## 🚀 Live Demo
 
-**Netlify Deployment:** [Netlify Live URL here]
+**Netlify Deployment:** [shopsy-ecomstore.netlify.app/](https://shopsy-ecomstore.netlify.app/)
 
 ## ✨ Features
 
