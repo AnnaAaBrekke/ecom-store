@@ -1,17 +1,3 @@
-// export const SubmitFormButton = ({ isLoading }) => {
-//   return (
-//     <ButtonContainer>
-//       <StyledMainButton type="submit" disabled={isLoading}>
-//         {isLoading ? "Sending..." : "Submit Message"}
-//       </StyledMainButton>
-//     </ButtonContainer>
-//   );
-// };
-
-// This code is about a button that changes how it looks when it is loading.
-// - If the button is not loading, it shows the text: "Submit Message".
-// - If the button is loading, it shows the text: "Sending..." and is disabled (you can’t click it).
-
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { ThemeProvider } from "styled-components";
@@ -50,5 +36,4 @@ test("display `Sending...`text and disables button when loading", () => {
   expect(button).toBeDisabled();
 });
 
-// Why const is used here: We store the button in a variable called button.
-// Later, we use button in multiple checks - expects:
+

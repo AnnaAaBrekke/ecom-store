@@ -1,15 +1,3 @@
-// const QuantityCounter = ({ quantity, onIncrease, onDecrease }) => {
-//   return (
-//     <CounterContainer>
-//       <CounterButton onClick={onDecrease} disabled={quantity === 1}>
-//         -
-//       </CounterButton>
-//       <Quantity>{quantity}</Quantity>
-//       <CounterButton onClick={onIncrease}>+</CounterButton>
-//     </CounterContainer>
-//   );
-// };
-
 import React, { useState } from "react";
 import "@testing-library/jest-dom";
 import QuantityCounter from "./Quantity";
@@ -141,8 +129,3 @@ describe("QuantityCounter", () => {
     expect(quantityDisplay).toBeInTheDocument();
   });
 });
-
-// When is state needed in testing?
-// A component is controlled (i.e., receives a prop that changes based on external logic).
-// The component does not manage its own state internally.
-// You want to simulate user interactions that should trigger re-renders.

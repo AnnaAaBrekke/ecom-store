@@ -1,24 +1,3 @@
-// export const CheckoutButton = () => {
-//   const [isLoading, setIsLoading] = useState(false);
-
-//   const handleCheckout = (e) => {
-//     e.preventDefault();
-//     setIsLoading(true);
-//     setTimeout(() => {
-//       document.getElementById("checkout-link").click();
-//     }, 2000);
-//   };
-
-//   return (
-//     <>
-//       <StyledMainButton onClick={handleCheckout} disabled={isLoading}>
-//         {isLoading ? "Processing..." : "Checkout"}
-//       </StyledMainButton>
-//       <Link to="/checkoutSuccess" id="checkout-link" />
-//     </>
-//   );
-// };
-
 import React, { act } from "react";
 import "@testing-library/jest-dom";
 import { expect } from "vitest";
@@ -62,28 +41,3 @@ test("button displays `Processing..´ text and is disabled when loading and clic
 });
 
 
-
-
-// // Test if the button redirects to CheckoutSuccess page on click after loading and simulated time
-// // Mock `useNavigate`
-// vi.mock("react-router-dom", async () => {
-//   const actual = await vi.importActual("react-router-dom");
-//   return {
-//     ...actual,
-//     useNavigate: vi.fn(),
-//   };
-// });
-
-// const mockNavigate = useNavigate();
-
-// test("button redirects to CheckoutSucess after timeout", async () => {
-//   renderWithTheme(<CheckoutButton />);
-
-//   const button = screen.getByRole("button", { name: /checkout/i });
-
-//   await userEvent.click(button);
-
-//   await new Promise((resolve) => setTimeout(resolve, 2000));
-
-//   expect(mockNavigate).toHaveBeenCalledWith("/checkoutSuccess");
-// });

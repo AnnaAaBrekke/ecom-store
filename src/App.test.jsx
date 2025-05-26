@@ -1,13 +1,3 @@
-// createRoot(document.getElementById("root")).render(
-//   <StrictMode>
-//     <ThemeProvider theme={theme}>
-//       <BrowserRouter>
-//         <App />
-//       </BrowserRouter>
-//     </ThemeProvider>
-//   </StrictMode>
-// );
-
 import React from "react";
 import "@testing-library/react";
 import renderer from "react-test-renderer";
