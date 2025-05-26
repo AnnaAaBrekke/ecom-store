@@ -12,11 +12,9 @@ import {
 function Navbar() {
   return (
     <NavbarContainer>
-      <>
-        <LogoLink to="/">
-          <LogoImage src="/images/shopsy_logo.jpg"></LogoImage>
-        </LogoLink>
-      </>
+      <LogoLink to="/">
+        <LogoImage src="/images/shopsy_logo.jpg"></LogoImage>
+      </LogoLink>
       <NavLinks>
         <NavItem>
           <NavLinkStyled to="/">Home</NavLinkStyled>
