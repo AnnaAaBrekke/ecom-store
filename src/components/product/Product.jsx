@@ -50,8 +50,8 @@ const Product = ({ product, showViewButton = true }) => {
         </PriceContainer>
 
         <Tags>
-          {product.tags.map((tag, index) => (
-            <Tag key={index}>{tag}</Tag>
+          {product.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
           ))}
         </Tags>
         {showViewButton && (
