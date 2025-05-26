@@ -17,7 +17,7 @@ const Cart = () => {
     return (
       <StyledEmptyContainer>
         <Paragraph> Your cart is empty.</Paragraph>
-        <br></br>
+        <br />
         <BackToShopLink to="/">Go Back To Shopping</BackToShopLink>
       </StyledEmptyContainer>
     );

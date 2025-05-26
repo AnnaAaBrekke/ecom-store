@@ -18,7 +18,7 @@ const CheckoutSuccessPage = () => {
       <Heading>Checkout Success!</Heading>
       <SubHeader>Your order has been placed successfully.</SubHeader>
       <Paragraph>Your cart is now empty.</Paragraph>
-      <br></br>
+      <br />
       <BackToShopLink to="/">Go Back To Shopping</BackToShopLink>
     </StyledSuccessPage>
   );
